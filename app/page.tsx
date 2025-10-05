@@ -16,7 +16,7 @@ const noto = Noto_Serif({
 /**
  * The home page component displaying a hero section with an image and a quote.
  */
-export default function Home() {
+export default function HomePage() {
   return (
     <main className="main">
       { /* Hero Section */}
