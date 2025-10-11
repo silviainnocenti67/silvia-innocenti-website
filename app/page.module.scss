@@ -6,6 +6,16 @@
   background-color: hsl(36, 5%, 81%);
   padding: 2rem;
   overflow: hidden;
+  position: relative;
+
+  a {
+    text-decoration: none;
+    color: hsl(36, 5%, 35%);
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
 }
 
 .content {
@@ -14,12 +24,28 @@
   align-items: center;
   gap: 1rem;
   text-align: center;
-  transform: translate(0, -50px);
+  transform: translateY(-90px);
+}
+
+.textContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px
+}
+
+.profession {
+  font-size: 30px;
+  color: hsl(36, 5%, 35%);
+  margin: 0;
+  animation: fadeIn 1s ease-in-out 0.1s both;
 }
 
 .logoContainer {
   animation: fadeIn 0.8s ease-in-out;
   position: absolute;
+  top: 100px;
   
   img {
     width: 400px;
@@ -40,6 +66,31 @@
   color: hsl(36, 5%, 35%);
   margin: 0;
   animation: fadeIn 1.2s ease-in-out 0.4s both;
+  margin-top: 30px;
+}
+
+.contacts {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  padding: 2rem;
+}
+
+.contactsText {
+  font-size: 1.3rem;
+  color: hsl(36, 5%, 35%);
+  animation: fadeIn 1.2s ease-in-out 0.6s both;
+}
+
+@media screen and (max-width: 700px) {
+  .contacts {
+    flex-direction: column;
+    gap: 10px;
+  }
 }
 
 @keyframes fadeIn {
