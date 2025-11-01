@@ -5,7 +5,8 @@ import { AnimatePresence, motion } from "motion/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import classes from "./DestopNavbar.module.scss";
+import classes from "./DesktopNavbar.module.scss";
+import { ProjectTypes } from "@/enums/projectTypes.enum";
 
 /**
  * The desktop version of the navigation bar.
@@ -68,9 +69,10 @@ export default function DesktopNavbar() {
                   transition={{ duration: 0.2 }}
                 >
                   <Link href="/progetti" className={classes.link} onClick={resetDropdown}>Tutti</Link>
-                  <Link href="/progetti?filter=1" className={classes.link} onClick={resetDropdown}>Filtro1</Link>
-                  <Link href="/progetti?filter=2" className={classes.link} onClick={resetDropdown}>Filtro2</Link>
-                  <Link href="/progetti?filter=3" className={classes.link} onClick={resetDropdown}>Filtro3</Link>
+                  <Link href={`/progetti?type=${ProjectTypes.RISTRUTTURAZIONE}`} className={classes.link} onClick={resetDropdown}>Ristrutturazione</Link>
+                  <Link href={`/progetti?type=${ProjectTypes.NUOVA_COSTRUZIONE}`} className={classes.link} onClick={resetDropdown}>Nuova costruzione</Link>
+                  <Link href={`/progetti?type=${ProjectTypes.RESTAURO}`} className={classes.link} onClick={resetDropdown}>Restauro</Link>
+                  <Link href={`/progetti?type=${ProjectTypes.INTERIOR_DESIGN}`} className={classes.link} onClick={resetDropdown}>Interior design</Link>
                 </motion.div>
               )
             }
