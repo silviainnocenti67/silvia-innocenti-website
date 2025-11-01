@@ -1,6 +1,9 @@
 import { Project } from '../interfaces/Project.interface';
 import { ProjectTypes } from '@/enums/projectTypes.enum';
 
+export const PROJECTS_COVERS_PATH = '/projects/covers';
+export const PROJECTS_COLLECTIONS_PATH = '/projects/collections';
+
 export const projects: Project[] = [
     {
         id: 1,
@@ -9,6 +12,14 @@ export const projects: Project[] = [
         description: 'Ristrutturazione di una villa storica',
         date: '2022-01-01',
         location: 'Roma',
+        cover: `${PROJECTS_COVERS_PATH}/1.png`,
+        collection: [
+            `${PROJECTS_COLLECTIONS_PATH}/1/1.jpg`,
+            `${PROJECTS_COLLECTIONS_PATH}/1/2.jpg`,
+            `${PROJECTS_COLLECTIONS_PATH}/1/3.jpg`,
+            `${PROJECTS_COLLECTIONS_PATH}/1/4.jpg`,
+            `${PROJECTS_COLLECTIONS_PATH}/1/5.jpg`,
+        ],
     },
     {
         id: 2,
@@ -17,14 +28,30 @@ export const projects: Project[] = [
         description: 'Progetto di una nuova costruzione residenziale',
         date: '2023-03-15',
         location: 'Milano',
+        cover: `${PROJECTS_COVERS_PATH}/2.png`,
+        collection: [
+            `${PROJECTS_COLLECTIONS_PATH}/2/1.jpg`,
+            `${PROJECTS_COLLECTIONS_PATH}/2/2.jpg`,
+            `${PROJECTS_COLLECTIONS_PATH}/2/3.jpg`,
+            `${PROJECTS_COLLECTIONS_PATH}/2/4.jpg`,
+            `${PROJECTS_COLLECTIONS_PATH}/2/5.jpg`,
+        ],
     },
     {
         id: 3,
-        type: ProjectTypes.RESTARURO,
+        type: ProjectTypes.RESTAURO,
         title: 'Restauro Palazzo Antico',
         description: 'Restauro di un palazzo antico nel centro storico',
-        date: '2021-11-20', 
+        date: '2021-11-20',
         location: 'Firenze',
+        cover: `${PROJECTS_COVERS_PATH}/3.png`,
+        collection: [
+            `${PROJECTS_COLLECTIONS_PATH}/3/1.jpg`,
+            `${PROJECTS_COLLECTIONS_PATH}/3/2.jpg`,
+            `${PROJECTS_COLLECTIONS_PATH}/3/3.jpg`,
+            `${PROJECTS_COLLECTIONS_PATH}/3/4.jpg`,
+            `${PROJECTS_COLLECTIONS_PATH}/3/5.jpg`,
+        ],
     },
     {
         id: 4,
@@ -33,6 +60,14 @@ export const projects: Project[] = [
         description: 'Progetto di interior design per un appartamento moderno',
         date: '2022-05-10',
         location: 'Torino',
+        cover: `${PROJECTS_COVERS_PATH}/4.png`,
+        collection: [
+            `${PROJECTS_COLLECTIONS_PATH}/4/1.jpg`,
+            `${PROJECTS_COLLECTIONS_PATH}/4/2.jpg`,
+            `${PROJECTS_COLLECTIONS_PATH}/4/3.jpg`,
+            `${PROJECTS_COLLECTIONS_PATH}/4/4.jpg`,
+            `${PROJECTS_COLLECTIONS_PATH}/4/5.jpg`,
+        ],
     },
     {
         id: 5,
@@ -41,6 +76,14 @@ export const projects: Project[] = [
         description: 'Ristrutturazione completa di una casa di campagna',
         date: '2023-07-22',
         location: 'Siena',
+        cover: `${PROJECTS_COVERS_PATH}/5.png`,
+        collection: [
+            `${PROJECTS_COLLECTIONS_PATH}/5/1.jpg`,
+            `${PROJECTS_COLLECTIONS_PATH}/5/2.jpg`,
+            `${PROJECTS_COLLECTIONS_PATH}/5/3.jpg`,
+            `${PROJECTS_COLLECTIONS_PATH}/5/4.jpg`,
+            `${PROJECTS_COLLECTIONS_PATH}/5/5.jpg`,
+        ],
     },
     {
         id: 6,
@@ -49,6 +92,14 @@ export const projects: Project[] = [
         description: 'Progetto di interior design per uffici aziendali',
         date: '2022-09-30',
         location: 'Bologna',
+        cover: `${PROJECTS_COVERS_PATH}/6.png`,
+        collection: [
+            `${PROJECTS_COLLECTIONS_PATH}/6/1.jpg`,
+            `${PROJECTS_COLLECTIONS_PATH}/6/2.jpg`,
+            `${PROJECTS_COLLECTIONS_PATH}/6/3.jpg`,
+            `${PROJECTS_COLLECTIONS_PATH}/6/4.jpg`,
+            `${PROJECTS_COLLECTIONS_PATH}/6/5.jpg`,
+        ],
     },
     {
         id: 7,
@@ -57,14 +108,30 @@ export const projects: Project[] = [
         description: 'Progetto di una nuova costruzione per un centro commerciale',
         date: '2023-12-01',
         location: 'Napoli',
+        cover: `${PROJECTS_COVERS_PATH}/7.png`,
+        collection: [
+            `${PROJECTS_COLLECTIONS_PATH}/7/1.jpg`,
+            `${PROJECTS_COLLECTIONS_PATH}/7/2.jpg`,
+            `${PROJECTS_COLLECTIONS_PATH}/7/3.jpg`,
+            `${PROJECTS_COLLECTIONS_PATH}/7/4.jpg`,
+            `${PROJECTS_COLLECTIONS_PATH}/7/5.jpg`,
+        ],
     },
     {
         id: 8,
-        type: ProjectTypes.RESTARURO,
+        type: ProjectTypes.RESTAURO,
         title: 'Restauro Villa Storica',
         description: 'Restauro di una villa storica con giardino',
         date: '2024-01-15',
         location: 'Venezia',
+        cover: `${PROJECTS_COVERS_PATH}/8.png`,
+        collection: [
+            `${PROJECTS_COLLECTIONS_PATH}/8/1.jpg`,
+            `${PROJECTS_COLLECTIONS_PATH}/8/2.jpg`,
+            `${PROJECTS_COLLECTIONS_PATH}/8/3.jpg`,
+            `${PROJECTS_COLLECTIONS_PATH}/8/4.jpg`,
+            `${PROJECTS_COLLECTIONS_PATH}/8/5.jpg`,
+        ],
     },
     {
         id: 9,
@@ -73,6 +140,14 @@ export const projects: Project[] = [
         description: 'Progetto di una nuova costruzione per un edificio commerciale',
         date: '2024-02-20',
         location: 'Torino',
+        cover: `${PROJECTS_COVERS_PATH}/9.png`,
+        collection: [
+            `${PROJECTS_COLLECTIONS_PATH}/9/1.jpg`,
+            `${PROJECTS_COLLECTIONS_PATH}/9/2.jpg`,
+            `${PROJECTS_COLLECTIONS_PATH}/9/3.jpg`,
+            `${PROJECTS_COLLECTIONS_PATH}/9/4.jpg`,
+            `${PROJECTS_COLLECTIONS_PATH}/9/5.jpg`,
+        ],
     },
     {
         id: 10,
@@ -81,5 +156,13 @@ export const projects: Project[] = [
         description: 'Progetto di interior design per un negozio',
         date: '2024-03-10',
         location: 'Milano',
+        cover: `${PROJECTS_COVERS_PATH}/10.png`,
+        collection: [
+            `${PROJECTS_COLLECTIONS_PATH}/10/1.jpg`,
+            `${PROJECTS_COLLECTIONS_PATH}/10/2.jpg`,
+            `${PROJECTS_COLLECTIONS_PATH}/10/3.jpg`,
+            `${PROJECTS_COLLECTIONS_PATH}/10/4.jpg`,
+            `${PROJECTS_COLLECTIONS_PATH}/10/5.jpg`,
+        ],
     }
 ];

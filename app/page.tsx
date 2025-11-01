@@ -5,6 +5,7 @@ import { Noto_Serif } from "next/font/google";
 import Link from "next/link";
 import "./globals.scss";
 import classes from "./page.module.scss";
+import ProjectsCarousel from "@/components/atoms/project-carousel/ProjectsCarousel";
 
 const noto = Noto_Serif({
   subsets: ["latin"],
@@ -81,7 +82,7 @@ export default function HomePage() {
 
       { /* Projects Section */}
       <div className={classes.projectsSection}>
-        
+        <ProjectsCarousel />
       </div>
     </main>
   );

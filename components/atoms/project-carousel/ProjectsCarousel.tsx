@@ -1,61 +1,60 @@
 'use client';
 
-import { projects } from "@/data/projects";
-import { motion } from "framer-motion";
-import Link from "next/link";
-import { useState } from "react";
-import classes from "./ProjectsCarousel.module.scss";
+import Image from 'next/image';
+import styles from './ProjectsCarousel.module.scss';
+import { projects } from '@/data/projects';
+import { useRouter } from 'next/navigation';
 
+/**
+ * Projects Carousel Component.
+ */
 export default function ProjectsCarousel() {
-    const [isPaused, setIsPaused] = useState(false);
+    /** Projects covers to be rendered. */
+    const covers = projects.map(project => project.cover);
+    /** Router instance. */
+    const router = useRouter();
 
-    // Duplica i progetti 3 volte per l'effetto infinito senza interruzioni
-    const duplicatedProjects = [...projects, ...projects, ...projects];
+    /**
+     * Navigate to the projects page.
+     */
+    function goToProjects() {
+        router.push('/progetti');
+    }
 
     return (
-        <div className={classes.carouselContainer}>
-            <div
-                className={classes.carouselWrapper}
-                onMouseEnter={() => setIsPaused(true)}
-                onMouseLeave={() => setIsPaused(false)}
-            >
-                <motion.div
-                    className={classes.carouselTrack}
-                    animate={{
-                        x: [0, -(projects.length * (400 + 24))]
-                    }}
-                    transition={{
-                        x: {
-                            repeat: Infinity,
-                            repeatType: "loop",
-                            duration: projects.length * 3,
-                            ease: "linear"
-                        }
-                    }}
-                    style={{
-                        animationPlayState: isPaused ? 'paused' : 'running'
-                    }}
-                >
-                    {duplicatedProjects.map((project, index) => (
-                        <Link
-                            href={`/progetti/${project.id}`}
-                            key={`${project.id}-${index}`}
-                            className={classes.carouselItem}
-                        >
-                            <div className={classes.projectSquare}>
-                                <img
-                                    src={project.thumbnailUrl}
-                                    alt={project.title}
-                                    className={classes.projectThumbnail}
-                                />
-                                <div className={classes.projectOverlay}>
-                                    <h3 className={classes.projectTitle}>{project.title}</h3>
-                                    <p className={classes.projectType}>{project.type}</p>
-                                </div>
-                            </div>
-                        </Link>
-                    ))}
-                </motion.div>
+        <div className={styles.carouselWrapper}>
+            <div className={styles.carouselContainer} onClick={goToProjects}>
+                {/* Primo set di immagini */}
+                {covers.map((cover, index) => (
+                    <div key={`original-${index}`} className={styles.imageWrapper}>
+                        <Image
+                            src={cover ?? ""}
+                            alt={`Project Cover ${index + 1}`}
+                            width={500}
+                            height={400}
+                            className={styles.image}
+                        />
+                    </div>
+                ))}
+
+                {/* Duplicato per l'effetto infinito */}
+                {covers.map((cover, index) => (
+                    <div key={`duplicate-${index}`} className={styles.imageWrapper}>
+                        <Image
+                            src={cover ?? ""}
+                            alt={`Project Cover ${index + 1}`}
+                            width={500}
+                            height={500}
+                            className={styles.image}
+                        />
+                    </div>
+                ))}
+
+                <div className={styles.overlay} />
+            </div>
+
+            <div className={styles.label}>
+                Esplora progetti
             </div>
         </div>
     );
