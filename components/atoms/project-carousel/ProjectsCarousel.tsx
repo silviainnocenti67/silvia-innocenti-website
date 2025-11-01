@@ -21,6 +21,7 @@ export default function ProjectsCarousel() {
         router.push('/progetti');
     }
 
+    /** Render */
     return (
         <div className={styles.carouselWrapper}>
             <div className={styles.carouselContainer} onClick={goToProjects}>
@@ -53,7 +54,7 @@ export default function ProjectsCarousel() {
                 <div className={styles.overlay} />
             </div>
 
-            <div className={styles.label}>
+            <div className={styles.projectsLink}>
                 Esplora progetti
             </div>
         </div>

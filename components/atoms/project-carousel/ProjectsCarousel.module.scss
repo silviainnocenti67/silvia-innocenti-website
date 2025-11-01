@@ -37,14 +37,14 @@
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.4); // Layer di oscuramento
-    pointer-events: none;
+    transition: background-color 0.3s ease;
 
     &:hover {
-      background-color: rgba(0, 0, 0, 0.8);
+      background-color: rgba(0, 0, 0, 0.6);
     }
 }
 
-.label {
+.projectsLink {
     position: absolute;
     bottom: 3rem;
     right: 2rem;
@@ -52,7 +52,11 @@
     font-size: 1.5rem;
     z-index: 10;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    pointer-events: none;
+
+    &:hover {
+        text-decoration: underline;
+        cursor: pointer;
+    }
 }
 
 @keyframes scroll {
