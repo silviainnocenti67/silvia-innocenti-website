@@ -1,10 +1,18 @@
 import type { Metadata } from "next";
 import { Inter, Nunito } from "next/font/google"; 
 import "./globals.scss";
+import Navbar from "@/components/molecules/navbar/Navbar";
+import Footer from "@/components/molecules/footer/Footer";
 
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
+  display: "swap",
+});
+
+const nunito = Nunito({
+  subsets: ["latin"],
+  variable: "--font-nunito",
   display: "swap",
 });
 
@@ -26,7 +34,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className}`}>
+        <Navbar />
         {children}
+        <Footer />
       </body>
     </html>
   );

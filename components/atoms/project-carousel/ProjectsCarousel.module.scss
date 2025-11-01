@@ -1,0 +1,141 @@
+.carouselContainer {
+  width: 100%;
+  padding: 80px 0;
+  overflow: hidden;
+  background: #f8f8f8;
+}
+
+.carouselHeader {
+  max-width: 1400px;
+  margin: 0 auto 40px;
+  padding: 0 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.carouselHeader h2 {
+  font-size: 2.5rem;
+  font-weight: 400;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.viewAllLink {
+  font-size: 1rem;
+  color: #1a1a1a;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+  font-weight: 500;
+}
+
+.viewAllLink:hover {
+  opacity: 0.6;
+}
+
+.carouselWrapper {
+  width: 100%;
+  overflow: hidden;
+  cursor: grab;
+}
+
+.carouselWrapper:active {
+  cursor: grabbing;
+}
+
+.carouselTrack {
+  display: flex;
+  gap: 24px;
+  will-change: transform;
+}
+
+.carouselItem {
+  flex-shrink: 0;
+  text-decoration: none;
+}
+
+.projectSquare {
+  width: 400px;
+  height: 400px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  background: #fff;
+}
+
+.projectSquare:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.projectThumbnail {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.projectSquare:hover .projectThumbnail {
+  transform: scale(1.05);
+}
+
+.projectOverlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 30px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.4), transparent);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.projectSquare:hover .projectOverlay {
+  opacity: 1;
+}
+
+.projectType {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.875rem;
+  margin: 0;
+  text-transform: capitalize;
+}
+
+@media (max-width: 768px) {
+  .carouselContainer {
+    padding: 60px 0;
+  }
+
+  .carouselHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 0 20px;
+  }
+
+  .carouselHeader h2 {
+    font-size: 2rem;
+  }
+
+  .projectSquare {
+    width: 280px;
+    height: 280px;
+  }
+
+  .carouselTrack {
+    gap: 16px;
+  }
+
+  .projectTitle {
+    font-size: 1.2rem;
+  }
+
+  .projectOverlay {
+    padding: 20px;
+  }
+}

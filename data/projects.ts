@@ -1,0 +1,85 @@
+import { Project } from '../interfaces/Project.interface';
+import { ProjectTypes } from '@/enums/projectTypes.enum';
+
+export const projects: Project[] = [
+    {
+        id: 1,
+        type: ProjectTypes.RISTRUTTURAZIONE,
+        title: 'Ristrutturazione Villa',
+        description: 'Ristrutturazione di una villa storica',
+        date: '2022-01-01',
+        location: 'Roma',
+    },
+    {
+        id: 2,
+        type: ProjectTypes.NUOVA_COSTRUZIONE,
+        title: 'Nuova Costruzione Residenziale',
+        description: 'Progetto di una nuova costruzione residenziale',
+        date: '2023-03-15',
+        location: 'Milano',
+    },
+    {
+        id: 3,
+        type: ProjectTypes.RESTARURO,
+        title: 'Restauro Palazzo Antico',
+        description: 'Restauro di un palazzo antico nel centro storico',
+        date: '2021-11-20', 
+        location: 'Firenze',
+    },
+    {
+        id: 4,
+        type: ProjectTypes.INTERIOR_DESIGN,
+        title: 'Design Interni Appartamento Moderno',
+        description: 'Progetto di interior design per un appartamento moderno',
+        date: '2022-05-10',
+        location: 'Torino',
+    },
+    {
+        id: 5,
+        type: ProjectTypes.RISTRUTTURAZIONE,
+        title: 'Ristrutturazione Casa di Campagna',
+        description: 'Ristrutturazione completa di una casa di campagna',
+        date: '2023-07-22',
+        location: 'Siena',
+    },
+    {
+        id: 6,
+        type: ProjectTypes.INTERIOR_DESIGN,
+        title: 'Interior Design Uffici Aziendali',
+        description: 'Progetto di interior design per uffici aziendali',
+        date: '2022-09-30',
+        location: 'Bologna',
+    },
+    {
+        id: 7,
+        type: ProjectTypes.NUOVA_COSTRUZIONE,
+        title: 'Nuova Costruzione Centro Commerciale',
+        description: 'Progetto di una nuova costruzione per un centro commerciale',
+        date: '2023-12-01',
+        location: 'Napoli',
+    },
+    {
+        id: 8,
+        type: ProjectTypes.RESTARURO,
+        title: 'Restauro Villa Storica',
+        description: 'Restauro di una villa storica con giardino',
+        date: '2024-01-15',
+        location: 'Venezia',
+    },
+    {
+        id: 9,
+        type: ProjectTypes.NUOVA_COSTRUZIONE,
+        title: 'Nuova Costruzione Edificio Commerciale',
+        description: 'Progetto di una nuova costruzione per un edificio commerciale',
+        date: '2024-02-20',
+        location: 'Torino',
+    },
+    {
+        id: 10,
+        type: ProjectTypes.INTERIOR_DESIGN,
+        title: 'Interior Design Negozio',
+        description: 'Progetto di interior design per un negozio',
+        date: '2024-03-10',
+        location: 'Milano',
+    }
+];

@@ -1,9 +1,10 @@
 'use client';
 
+import { motion } from "framer-motion";
 import { Noto_Serif } from "next/font/google";
+import Link from "next/link";
 import "./globals.scss";
-import Image from "next/image";
-import styles from "./page.module.scss";
+import classes from "./page.module.scss";
 
 const noto = Noto_Serif({
   subsets: ["latin"],
@@ -17,30 +18,71 @@ const noto = Noto_Serif({
  */
 export default function HomePage() {
   return (
-    <div className={styles.container}>
-      {/* Contacts */}
-      <div className={styles.contacts}>
-        <p className={styles.contactsText}><strong>Email:</strong> <a href="mailto:silviainnocentiarch@gmail.com">silviainnocentiarch@gmail.com</a></p>
-        <p className={styles.contactsText}><strong>Telefono:</strong> <a href="tel:+393382137308">338 213 7308</a></p>
+    <main className="main">
+      { /* Hero Section */}
+      <div className={classes.heroSection}>
+        <img src="/hero-photo.png" alt="Hero Image" className={classes.heroImage} />
+        <div className={classes.heroTextContainer}>
+          <motion.p
+            className={`${classes.heroQuote} ${noto.className}`}
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            “L'architettura<br />
+            è il gioco sapiente,<br />
+            rigoroso e magnifico<br />
+            dei volumi assemblati<br />
+            nella luce”
+          </motion.p>
+          <motion.p
+            className={classes.heroAuthor}
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            viewport={{ once: true }}
+          >
+            Le Corbusier
+          </motion.p>
+        </div>
       </div>
 
-      {/* Content */}
-      <div className={styles.content}>
-        <div className={styles.textContainer}>
-          <p className={`${styles.profession} ${noto.className}`}>Architetto</p>
-          <h1 className={`${styles.title} ${noto.className}`}>Silvia Innocenti</h1>
-          <p className={styles.subtitle}>Presto online</p>
-        </div>
-        <div className={styles.logoContainer}>
-          <Image
-            src="/loading.gif"
-            alt="Logo"
-            width={300}
-            height={300}
-            priority
-          />
-        </div>
+      { /* Profile section */}
+      <div className={classes.profileSection}>
+        <motion.div className={classes.profileTextContainer}
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
+          <h2 className={classes.profileTitle}>Silvia Innocenti</h2>
+          <p>
+            Ogni volume, ogni spazio &ndash; che si tratti di una parete, un
+            pavimento o un soffitto &ndash; è per me una pagina bianca, pronta
+            ad accogliere storie. In quei luoghi le persone scriveranno i
+            capitoli della propria vita quotidiana, ed è con questo
+            pensiero che affronto ogni progetto. E&apos; una responsabilità
+            che solo la passione per questo lavoro mi aiuta ad affrontare
+            con serietà e, nello stesso tempo, con la gioia di dare spazi e
+            ambientazioni nei quali ci si possa sentire a proprio agio e in armonia.
+          </p>
+          <Link href="/profile" className={classes.profileLink}>Scopri di più</Link>
+        </motion.div>
+        <motion.div className={classes.photoContainer}
+          initial={{ opacity: 0, x: 20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          viewport={{ once: true }}
+        >
+          <img src="/profile-photo.png" alt="Profile Image" className={classes.profileImage} />
+        </motion.div>
       </div>
-    </div>
+
+      { /* Projects Section */}
+      <div className={classes.projectsSection}>
+        
+      </div>
+    </main>
   );
 }
