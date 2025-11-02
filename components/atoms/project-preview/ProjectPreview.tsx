@@ -3,6 +3,7 @@
 import { useRouter } from 'next/navigation';
 import classes from './ProjectPreview.module.scss';
 import { motion } from 'framer-motion';
+import { useRouteLoader } from '@/components/providers/RouteLoaderProvider';
 
 type Props = {
   /** Project identifier. */
@@ -19,11 +20,14 @@ type Props = {
 export default function ProjectPreview({ id, title, coverUrl }: Props) {
   /** Router instance for navigation. */
   const router = useRouter();
+  /** Route loader hook. */
+  const { startLoading } = useRouteLoader();
 
   /**
    * Navigates to the project detail page.
    */
   function goToProjectDetail() {
+    startLoading();
     router.push(`/progetti/${id}`);
   }
 

@@ -7,6 +7,8 @@ import { Suspense } from "react";
 import LoadingCircle from "@/components/atoms/loading-circle/LoadingCircle";
 import { Route } from "lucide-react";
 import { RouteLoader } from "@/components/molecules/route-loader/RouteLoader";
+import { RouteLoaderProvider } from "@/components/providers/RouteLoaderProvider";
+import LoaderPage from "@/components/molecules/loader-page/LoaderPage";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -39,10 +41,13 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className}`}>
         <Navbar />
-          <RouteLoader />
-          {children}
-      <Footer />
-    </body>
+        <RouteLoaderProvider>
+          <Suspense fallback={<LoaderPage />}>
+            {children}
+          </Suspense>
+        </RouteLoaderProvider>
+        <Footer />
+      </body>
     </html >
   );
 }

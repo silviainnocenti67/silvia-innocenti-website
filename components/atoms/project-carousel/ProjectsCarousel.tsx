@@ -4,6 +4,7 @@ import Image from 'next/image';
 import styles from './ProjectsCarousel.module.scss';
 import { projects } from '@/data/projects';
 import { useRouter } from 'next/navigation';
+import { useRouteLoader } from '@/components/providers/RouteLoaderProvider';
 
 /**
  * Projects Carousel Component.
@@ -13,11 +14,14 @@ export default function ProjectsCarousel() {
     const covers = projects.map(project => project.cover);
     /** Router instance. */
     const router = useRouter();
+    /** Route loader hook. */
+    const { startLoading } = useRouteLoader();
 
     /**
      * Navigate to the projects page.
      */
     function goToProjects() {
+        startLoading();
         router.push('/progetti');
     }
 
