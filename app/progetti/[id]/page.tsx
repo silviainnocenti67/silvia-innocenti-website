@@ -1,7 +1,5 @@
-import React from 'react'
-
 type Props = {
-    params: { id: string }
+    params: Promise<{ id: string }>
 }
 
 /**
@@ -9,8 +7,10 @@ type Props = {
  * This component represents the details page for a specific project 
  * based on the slug provided in the URL.
  */
-export default function ProjectDetailsPage({ params }: Props) {
+export default async function ProjectDetailsPage({ params }: Props) {
+  const { id } = await params;
+
   return (
-    <div>Project Details Page for Project ID: {params.id}</div>
+    <div>Project Details Page for Project ID: {id}</div>
   )
 }

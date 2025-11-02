@@ -1,9 +1,12 @@
 "use client";
 
+import { useRouter } from 'next/navigation';
 import classes from './ProjectPreview.module.scss';
 import { motion } from 'framer-motion';
 
 type Props = {
+  /** Project identifier. */
+  id?: number;
   /** Title of the project. */
   title?: string;
   /** URL of the project cover image. */
@@ -13,13 +16,24 @@ type Props = {
 /**
  * A preview component for displaying a project summary.
  */
-export default function ProjectPreview({ title, coverUrl }: Props) {
+export default function ProjectPreview({ id, title, coverUrl }: Props) {
+  /** Router instance for navigation. */
+  const router = useRouter();
+
+  /**
+   * Navigates to the project detail page.
+   */
+  function goToProjectDetail() {
+    router.push(`/progetti/${id}`);
+  }
+
   return (
     <motion.div className={classes.projectPreviewContainer}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
       viewport={{ once: true }}
+      onClick={goToProjectDetail}
     >
       <img src={coverUrl ?? ""} alt={title ?? ""} className={classes.projectPreviewImage} />
       <div className={classes.overlay} />
