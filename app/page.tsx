@@ -1,11 +1,11 @@
 'use client';
 
+import ProjectsCarousel from "@/components/atoms/project-carousel/ProjectsCarousel";
 import { motion } from "framer-motion";
 import { Noto_Serif } from "next/font/google";
 import Link from "next/link";
 import "./globals.scss";
 import classes from "./page.module.scss";
-import ProjectsCarousel from "@/components/atoms/project-carousel/ProjectsCarousel";
 
 const noto = Noto_Serif({
   subsets: ["latin"],
@@ -22,7 +22,7 @@ export default function HomePage() {
     <main className="main">
       { /* Hero Section */}
       <div className={classes.heroSection}>
-        <img src="/hero-photo.png" alt="Hero Image" className={classes.heroImage} />
+        <img src="/hero-photo.png" alt="Hero Image" className={classes.heroImage}/>
         <div className={classes.heroTextContainer}>
           <motion.p
             className={`${classes.heroQuote} ${noto.className}`}

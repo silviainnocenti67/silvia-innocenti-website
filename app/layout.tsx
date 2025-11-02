@@ -1,8 +1,12 @@
 import type { Metadata } from "next";
-import { Inter, Nunito } from "next/font/google"; 
+import { Inter, Nunito } from "next/font/google";
 import "./globals.scss";
 import Navbar from "@/components/molecules/navbar/Navbar";
 import Footer from "@/components/molecules/footer/Footer";
+import { Suspense } from "react";
+import LoadingCircle from "@/components/atoms/loading-circle/LoadingCircle";
+import { Route } from "lucide-react";
+import { RouteLoader } from "@/components/molecules/route-loader/RouteLoader";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -35,9 +39,10 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className}`}>
         <Navbar />
-        {children}
-        <Footer />
-      </body>
-    </html>
+          <RouteLoader />
+          {children}
+      <Footer />
+    </body>
+    </html >
   );
 }
