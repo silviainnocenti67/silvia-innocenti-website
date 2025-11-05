@@ -1,0 +1,31 @@
+.masonryGrid {
+    display: flex;
+    max-width: 100%;
+    gap: 50px;
+}
+
+.masonryColumn {
+    background-clip: padding-box;
+}
+
+.images {
+    max-width: 100%;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.lightBox {
+    overflow: hidden;
+}
+
+.subTitle {
+    width: 100%;
+}
+
+@media (max-width: 650px) {
+    .masonryGrid {
+        gap: 10px;
+    }
+}
