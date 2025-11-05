@@ -1,5 +1,4 @@
 .navbarContainer {
-    display: flex;
     width: 100%;
     justify-content: space-between;
     align-items: center;
@@ -62,6 +61,17 @@
     border-radius: 5px;
     z-index: 1;
     top: 30px;
-    width: 200;
+    width: 200px;
 }
-    
+
+@media screen and (min-width: 700px) {
+    .navbarContainer {
+        display: flex;
+    }
+}
+
+@media screen and (max-width: 699px) {
+    .navbarContainer {
+        display: none;
+    }
+}

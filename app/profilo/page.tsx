@@ -1,9 +1,12 @@
-import React from 'react'
+import "../globals.scss";
+import classes from "./page.module.scss";
 
-type Props = {}
-
-export default function ProfilePage({}: Props) {
+export default function ProfilePage() {
   return (
-    <div>Profile Page</div>
+    <main className="main">
+      <h1>Profilo</h1>
+      <div className='section'>
+      </div>
+    </main>
   )
 }
