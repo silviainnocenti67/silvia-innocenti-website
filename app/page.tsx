@@ -68,7 +68,7 @@ export default function HomePage() {
             con serietà e, nello stesso tempo, con la gioia di dare spazi e
             ambientazioni nei quali ci si possa sentire a proprio agio e in armonia.
           </p>
-          <Link href="/profile" className={classes.profileLink}>Scopri di più</Link>
+          <Link href="/profilo" className={classes.profileLink}>Scopri di più</Link>
         </motion.div>
         <motion.div className={classes.photoContainer}
           initial={{ opacity: 0, x: 20 }}

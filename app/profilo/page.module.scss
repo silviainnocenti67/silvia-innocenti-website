@@ -1,0 +1,28 @@
+.profileSection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+    padding: 0 10%;
+    width: 100%;
+}
+
+.profileTextContainer {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: black;
+}
+
+.photoContainer {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+
+.profileImage {
+    height: auto;
+    border-radius: 50%;
+}
