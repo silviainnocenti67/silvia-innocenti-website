@@ -94,7 +94,6 @@
   cursor: pointer;
 }
 
-
 .dropdownContent {
   display: flex;
   flex-direction: column;
@@ -142,5 +141,13 @@
 @media screen and (max-width: 699px) {
   .mobileNavbarContainer {
     display: flex;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .navLinksContainer{
+    justify-content: space-between;
+    gap:0px;
+    font-size: 13px;
   }
 }

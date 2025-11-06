@@ -1,4 +1,5 @@
 import { motion } from "motion/react";
+import classes from "./BlackOpaqueBg.module.scss";
 
 type Props = {
   /** Function to be called on click. */
@@ -14,15 +15,7 @@ export default function BlackOpaqueBg({ funct }: Props) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 0.5 }}
       exit={{ opacity: 0 }}
-      style={{
-        width: "100%",
-        height: "100%",
-        position: "fixed",
-        top: "0px",
-        left: "0px",
-        zIndex: 19,
-        backgroundColor: "black"
-      }}
+      className={classes.blackOpaqueBg}
       onClick={funct}
     />
   );

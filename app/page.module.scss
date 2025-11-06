@@ -94,8 +94,36 @@
     }
 }
 
+@media screen and (max-width: 900px) {
+    .profileSection {
+        flex-direction: column-reverse;
+        gap: 50px;
+        padding: 20px;
+    }
+
+    .profileImage {
+        width: 300px;
+    }
+}
+
 @media screen and (max-width: 699px) {
     .heroSection {
         margin-top: 86px;
+    }
+
+    .heroQuote {
+        font-size: 1.8rem;
+    }
+
+    .heroAuthor {
+        font-size: 1rem;
+    }
+
+    .heroTextContainer {
+        padding: 0 30px;
+    }
+
+    .profileImage {
+        width: 250px;
     }
 }

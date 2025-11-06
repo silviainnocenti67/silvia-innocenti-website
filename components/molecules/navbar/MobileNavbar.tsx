@@ -141,7 +141,7 @@ export default function MobileNavbar() {
       <AnimatePresence>
         {
           isMenuOpen &&
-          <BlackOpaqueBg funct={handleMenuDropdown} />
+          <BlackOpaqueBg funct={handleMenuDropdown}/>
         }
       </AnimatePresence>
     </>
