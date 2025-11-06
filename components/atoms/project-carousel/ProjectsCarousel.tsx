@@ -58,7 +58,7 @@ export default function ProjectsCarousel() {
                 <div className={styles.overlay} />
             </div>
 
-            <div className={styles.projectsLink}>
+            <div className={styles.projectsLink} onClick={goToProjects}>
                 Esplora progetti
             </div>
         </div>
