@@ -27,8 +27,11 @@ export default function MobileNavbar() {
    */
   function handleMenuDropdown() {
     if (isMenuOpen) {
-      animate("div", { opacity: 0 }, { duration: 0.3 });
-      setIsMenuOpen(false);
+      animate(`.${classes.link}, .${classes.projectsDropdownLinks}`, { opacity: 0 }, { duration: 0.3 });
+      setTimeout(() => {
+        setIsMenuOpen(false);
+        setIsProjectSectionOpen(false);
+      }, 300);
     } else {
       setIsMenuOpen(true);
     }
@@ -42,9 +45,7 @@ export default function MobileNavbar() {
    * Animates the presence of navigation links.
    */
   function animateLinksPresence() {
-    if (isMenuOpen) {
-      animate("div", { opacity: 1 }, { duration: 0.3, delay: 0.3 });
-    }
+    animate(`.${classes.link}, .${classes.projectsDropdownLinks}`, { opacity: 1 }, { duration: 0.3 });
   }
 
   /**
@@ -77,25 +78,32 @@ export default function MobileNavbar() {
                 className={classes.navLinksContainer}
                 layout
                 initial={{
-                  margin: 0,
+                  paddingTop: 0,
+                  paddingBottom: 0,
                   height: 0,
+                  opacity: 1
                 }}
                 animate={{
-                  margin: 20,
+                  paddingTop: 20,
+                  paddingBottom: 20,
                   height: "auto",
+                  opacity: 1
                 }}
                 exit={{
-                  margin: 0,
+                  paddingTop: 0,
+                  paddingBottom: 0,
                   height: 0,
+                  opacity: 1
                 }}
                 transition={{
-                  duration: 0.3
+                  duration: 0.3,
+                  ease: "easeInOut"
                 }}
                 onAnimationComplete={animateLinksPresence}
                 ref={scope}
               >
-                <Link href="/" className={classes.link}>Home</Link>
-                <div className={classes.projectsDropdownLinks} onClick={handleProjectSectionDropdown}>
+                <Link href="/" className={classes.link} onClick={handleMenuDropdown} style={{ opacity: 0 }}>Home</Link>
+                <div className={classes.projectsDropdownLinks} onClick={handleProjectSectionDropdown} style={{ opacity: 0 }}>
                   <p className={classes.link}>Progetti</p>
                   <motion.div className={classes.dropdownIconContainer}
                     animate={{ rotate: isProjectSectionOpen ? 180 : 0 }}
@@ -113,18 +121,18 @@ export default function MobileNavbar() {
                           exit={{ top: 30, opacity: 0 }}
                           transition={{ duration: 0.2 }}
                         >
-                          <Link href="/progetti" className={classes.link}>Tutti</Link>
-                          <Link href={`/progetti?type=${ProjectTypes.RISTRUTTURAZIONE}`} className={classes.link}>Ristrutturazione</Link>
-                          <Link href={`/progetti?type=${ProjectTypes.NUOVA_COSTRUZIONE}`} className={classes.link}>Nuova costruzione</Link>
-                          <Link href={`/progetti?type=${ProjectTypes.RESTAURO}`} className={classes.link}>Restauro</Link>
-                          <Link href={`/progetti?type=${ProjectTypes.INTERIOR_DESIGN}`} className={classes.link}>Interior design</Link>
+                          <Link href="/progetti" className={classes.link} onClick={handleMenuDropdown}>Tutti</Link>
+                          <Link href={`/progetti?type=${ProjectTypes.RISTRUTTURAZIONE}`} className={classes.link} onClick={handleMenuDropdown}>Ristrutturazione</Link>
+                          <Link href={`/progetti?type=${ProjectTypes.NUOVA_COSTRUZIONE}`} className={classes.link} onClick={handleMenuDropdown}>Nuova costruzione</Link>
+                          <Link href={`/progetti?type=${ProjectTypes.RESTAURO}`} className={classes.link} onClick={handleMenuDropdown}>Restauro</Link>
+                          <Link href={`/progetti?type=${ProjectTypes.INTERIOR_DESIGN}`} className={classes.link} onClick={handleMenuDropdown}>Interior design</Link>
                         </motion.div>
                       )
                     }
                   </AnimatePresence>
                 </div>
-                <Link href="/profilo" className={classes.link}>Profilo</Link>
-                <Link href="/contatti" className={classes.link}>Contatti</Link>
+                <Link href="/profilo" className={classes.link} onClick={handleMenuDropdown} style={{ opacity: 0 }}>Profilo</Link>
+                <Link href="/contatti" className={classes.link} onClick={handleMenuDropdown} style={{ opacity: 0 }}>Contatti</Link>
               </motion.div>
             )
           }
