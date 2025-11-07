@@ -27,9 +27,8 @@ export default function HomePage() {
           <motion.p
             className={`${classes.heroQuote} ${noto.className}`}
             initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
           >
             “L'architettura<br />
             è il gioco sapiente,<br />
@@ -40,9 +39,8 @@ export default function HomePage() {
           <motion.p
             className={classes.heroAuthor}
             initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
-            viewport={{ once: true }}
           >
             Le Corbusier
           </motion.p>

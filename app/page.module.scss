@@ -6,6 +6,7 @@
     overflow: hidden;
     position: relative;
     background-color: black;
+    margin-top: -50px;
 }
 
 .heroSection:hover>.heroImage {
@@ -108,7 +109,7 @@
 
 @media screen and (max-width: 699px) {
     .heroSection {
-        margin-top: 86px;
+        margin-top: -34px;
     }
 
     .heroQuote {

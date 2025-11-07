@@ -52,3 +52,17 @@
         cursor: pointer;
     }
 }
+
+@media screen and (max-width: 699px) {
+  .projectTitle {
+    top: 24px;
+    left: 24px;
+    font-size: 1.2rem;
+  }
+
+  .projectLink {
+    bottom: 24px;
+    right: 24px;
+    font-size: 1rem;
+  }
+}
