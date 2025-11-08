@@ -6,6 +6,13 @@ import SIButton from "@/components/atoms/button/SIButton";
 import Maps from "@/components/atoms/maps/Maps";
 import { useRef, useState } from "react";
 import LoadingCircle from "@/components/atoms/loading-circle/LoadingCircle";
+import { Inter } from "next/font/google";
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
 
 /**
  * Type for form submission data.
@@ -40,10 +47,9 @@ export default function Contatti() {
    */
   function checkValidity() {
     if (formRef.current) {
-      console.log("Form valid:", formRef.current.checkValidity());
       setIsValid(formRef.current.checkValidity());
     }
-  }
+  };
 
   /**
    * Handle form submission.
@@ -85,10 +91,7 @@ export default function Contatti() {
     } finally {
       setLoading(false);
     }
-  }
-
-  console.log("Is valid:", isValid);
-  console.log("Should disable button:", !isValid || loading);
+  };
 
   return (
     <main>
@@ -134,13 +137,14 @@ export default function Contatti() {
                 <textarea
                   id="message"
                   name="message"
-                  className={classes.textarea}
+                  className={`${classes.textarea} ${inter.className}`}
                   rows={5}
                   required
                   onChange={(e) => {
                     setFormData({ ...formData, message: e.target.value });
                     checkValidity();
-                  }} />
+                  }} 
+                  />
               </div>
 
               <div className={classes.buttonSection}>

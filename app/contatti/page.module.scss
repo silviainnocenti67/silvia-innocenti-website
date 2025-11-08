@@ -53,7 +53,7 @@
     align-items: flex-end;
     gap: 1rem;
     justify-content: start;
-    width: 40%;
+    width: 50%;
 }
 
 .contactsItems {
@@ -80,4 +80,21 @@
     outline: none;
     border-color: #666;
     box-shadow: 0 0 5px rgba(102, 102, 102, 0.5);
+}
+
+@media screen and (max-width: 1200px) {
+  .contactsContainer {
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 100px;
+  }
+
+  .contactsList{
+    width: 100%;
+    font-size: 0.8rem;
+  }
+
+  .contactsSection {
+    width: 100%;
+  }
 }

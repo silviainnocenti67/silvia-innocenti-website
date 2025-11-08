@@ -1,24 +1,15 @@
-import type { Metadata } from "next";
-import { Inter, Nunito } from "next/font/google";
-import "./globals.scss";
-import Navbar from "@/components/molecules/navbar/Navbar";
 import Footer from "@/components/molecules/footer/Footer";
-import { Suspense } from "react";
-import LoadingCircle from "@/components/atoms/loading-circle/LoadingCircle";
-import { Route } from "lucide-react";
-import { RouteLoader } from "@/components/molecules/route-loader/RouteLoader";
-import { RouteLoaderProvider } from "@/components/providers/RouteLoaderProvider";
 import LoaderPage from "@/components/molecules/loader-page/LoaderPage";
+import Navbar from "@/components/molecules/navbar/Navbar";
+import { RouteLoaderProvider } from "@/components/providers/RouteLoaderProvider";
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import { Suspense } from "react";
+import "./globals.scss";
 
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
-  display: "swap",
-});
-
-const nunito = Nunito({
-  subsets: ["latin"],
-  variable: "--font-nunito",
   display: "swap",
 });
 
