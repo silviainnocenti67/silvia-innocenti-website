@@ -4,6 +4,7 @@
     padding: 10px 30px;
     background-color: black;
     color: #ffffff;
+    border: none;
     border-radius: 10px;
     transition: background-color 0.3s ease-in-out;
 
@@ -11,4 +12,9 @@
         background-color: #333333;
         cursor: pointer;
     }
+}
+
+.SIButton:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
 }

@@ -32,6 +32,18 @@ export default function Contatti() {
   const [formData, setFormData] = useState<SubmissionData>({ name: '', email: '', message: '' });
   // Reference to the form element.
   const formRef = useRef<HTMLFormElement>(null);
+  // Form validity state.
+  const [isValid, setIsValid] = useState(false);
+
+  /**
+   * Check form validity and update state.
+   */
+  function checkValidity() {
+    if (formRef.current) {
+      console.log("Form valid:", formRef.current.checkValidity());
+      setIsValid(formRef.current.checkValidity());
+    }
+  }
 
   /**
    * Handle form submission.
@@ -41,7 +53,6 @@ export default function Contatti() {
     event.preventDefault();
     setLoading(true);
     setMessage(null);
-
     try {
       // Obtain reCAPTCHA token
       // const token = await window.grecaptcha.execute(SITE_KEY, {
@@ -76,59 +87,84 @@ export default function Contatti() {
     }
   }
 
+  console.log("Is valid:", isValid);
+  console.log("Should disable button:", !isValid || loading);
+
   return (
     <main>
       <h1>Contatti</h1>
 
+      {/* Contacts section */}
       <div className="section">
-        <h2>Invia una richiesta</h2>
-        <div className={classes.contactsSection}>
-          <form className={classes.form} onSubmit={handleSubmit} ref={formRef}>
-            <div className={classes.formInput}>
-              <label htmlFor="name">Nome</label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                className={classes.input}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                required />
-            </div>
+        <div className={classes.contactsContainer}>
+          {/* Contact form */}
+          <div className={classes.contactsSection}>
+            <h2 style={{ width: '100%', textAlign: 'left' }}>Invia una richiesta</h2>
+            <form className={classes.form} onSubmit={handleSubmit} ref={formRef}>
+              <div className={classes.formInput}>
+                <label htmlFor="name">Nome</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  className={classes.input}
+                  onChange={(e) => {
+                    setFormData({ ...formData, name: e.target.value });
+                    checkValidity();
+                  }}
+                  required />
+              </div>
 
-            <div className={classes.formInput}>
-              <label htmlFor="email">Email</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                className={classes.input}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                required />
-            </div>
+              <div className={classes.formInput}>
+                <label htmlFor="email">Email</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  className={classes.input}
+                  onChange={(e) => {
+                    setFormData({ ...formData, email: e.target.value });
+                    checkValidity();
+                  }}
+                  required />
+              </div>
 
-            <div className={classes.formInput}>
-              <label htmlFor="message">Messaggio</label>
-              <textarea
-                id="message"
-                name="message"
-                className={classes.textarea}
-                rows={5}
-                required
-                onChange={(e) => setFormData({ ...formData, message: e.target.value })} />
-            </div>
+              <div className={classes.formInput}>
+                <label htmlFor="message">Messaggio</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  className={classes.textarea}
+                  rows={5}
+                  required
+                  onChange={(e) => {
+                    setFormData({ ...formData, message: e.target.value });
+                    checkValidity();
+                  }} />
+              </div>
 
-            <div className={classes.buttonSection}>
-              {message && <p className={classes.message}>{message}</p>}
-              {loading && <LoadingCircle />}
-              {!loading && <SIButton text="Invia" type="submit" disabled={loading} />}
+              <div className={classes.buttonSection}>
+                {message && <p className={classes.message}>{message}</p>}
+                {loading && <LoadingCircle />}
+                {!loading && <SIButton text="Invia" type="submit" disabled={loading || !isValid} />}
+              </div>
+            </form>
+          </div>
+
+          <div className={classes.contactsList}>
+            <h2 style={{ width: '100%', textAlign: 'right' }}>I miei contatti</h2>
+            <p>Puoi contattarmi tramite i seguenti canali:</p>
+            <div className={classes.contactsItems}>
+              <p><strong>Telefono:</strong> +39 123 1234 1234</p>
+              <p><strong>Email:</strong> silviaInnocenti@mail.com</p>
             </div>
-          </form>
+          </div>
         </div>
       </div>
 
       {/* Office section */}
       <div className="section">
-        <h2>La sede</h2>
+        <h2>La mia sede</h2>
         <Maps />
       </div>
     </main>
