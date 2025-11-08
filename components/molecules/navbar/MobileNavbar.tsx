@@ -35,25 +35,28 @@ export default function MobileNavbar() {
     } else {
       setIsMenuOpen(true);
     }
-  }
+  };
 
+  /**
+   * Handles project section dropdown toggle.
+   */
   function handleProjectSectionDropdown() {
     setIsProjectSectionOpen(!isProjectSectionOpen);
-  }
+  };
 
   /**
    * Animates the presence of navigation links.
    */
   function animateLinksPresence() {
     animate(`.${classes.link}, .${classes.projectsDropdownLinks}`, { opacity: 1 }, { duration: 0.3 });
-  }
+  };
 
   /**
    * Navigates to the home page.
    */
   function goToHome() {
     router.push("/");
-  }
+  };
 
   /** Render */
   return (

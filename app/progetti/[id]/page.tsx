@@ -2,6 +2,7 @@ import { projects } from "@/data/projects";
 import "../../globals.scss";
 import classes from "./page.module.scss";
 import CustomMasonry from "@/components/molecules/custom-masonry/CustomMasonry";
+import { notFound } from "next/navigation";
 
 type Props = {
   params: Promise<{ id: string }>
@@ -21,7 +22,27 @@ export default async function ProjectDetailsPage({ params }: Props) {
   const project = projects.find(proj => proj.id === numId);
 
   if (!project) {
-    return <main>Project not found</main>;
+    notFound();
+  }
+
+  /**
+   * Get the project type label.
+   * @param type the type value.
+   * @returns the corresponding label for the project type.
+   */
+  function getProjectTypeLabel(type: string) {
+    switch (type) {
+      case 'ristrutturazione':
+        return 'Ristrutturazione';
+      case 'nuova_costruzione':
+        return 'Nuova Costruzione';
+      case 'restauro':
+        return 'Restauro';
+      case 'interior_design':
+        return 'Interior Design';
+      default:
+        return type;
+    }
   }
 
   return (
@@ -41,7 +62,7 @@ export default async function ProjectDetailsPage({ params }: Props) {
         <div className={classes.characteristicsContainer}>
           <p><strong>Data: </strong>{project.date}</p>
           <p><strong>Luogo: </strong>{project.location}</p>
-          <p><strong>Tipo: </strong>{project.type}</p>
+          <p><strong>Tipo: </strong>{getProjectTypeLabel(project.type)}</p>
         </div>
         <div className={classes.descriptionContainer}>
           <p>{project.description}</p>

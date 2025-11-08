@@ -1,9 +1,7 @@
 .profileSection {
     display: flex;
-    justify-content: center;
     align-items: center;
     gap: 100px;
-    padding: 0 10%;
     width: 100%;
 }
 
@@ -14,6 +12,7 @@
     font-size: 1.1rem;
     line-height: 1.8;
     color: black;
+    text-align: left;
 }
 
 .photoContainer {
@@ -25,4 +24,11 @@
 .profileImage {
     height: auto;
     border-radius: 50%;
+}
+
+@media screen and (max-width: 1170px) {
+    .profileSection {
+        flex-direction: column;
+        gap: 30px;
+    }
 }
