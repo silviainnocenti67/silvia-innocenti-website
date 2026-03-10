@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from "react";
-import LoadingCircle from "../loading-circle/LoadingCircle";
+import classes from "./Maps.module.scss";
 
 /**
  * Maps iframe component with loading state.
@@ -23,14 +23,7 @@ export default function Maps() {
   return (
     <>
       {isLoading && (
-        <div style={{ 
-          display: 'flex', 
-          justifyContent: 'center', 
-          alignItems: 'center', 
-          height: '400px' 
-        }}>
-          <LoadingCircle />
-        </div>
+        <div className={classes.skeleton} />
       )}
       <iframe
         ref={iframeRef}
