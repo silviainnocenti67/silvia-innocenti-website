@@ -89,8 +89,41 @@
     align-items: center;
 }
 
+.contactsCenter {
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+}
+
+.sitemap {
+    align-items: center;
+    gap: 10px;
+
+    @media (max-width: 1450px) {
+        align-items: center;
+    }
+}
+
+.sitemapLink {
+    color: var(--si-grey);
+    text-decoration: none;
+    width: fit-content;
+
+    &:hover {
+        text-decoration: underline;
+        cursor: pointer;
+    }
+}
+
 @media screen and (max-width: 600px) {
     .footerLogo{
         height: 60px;
+    }
+}
+
+/* Stesso gap del contenuto della pagina tra contenuto e footer */
+@media screen and (max-width: 699px) {
+    .footer {
+        margin-top: 70px;
     }
 }

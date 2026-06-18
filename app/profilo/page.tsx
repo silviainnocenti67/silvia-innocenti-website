@@ -1,8 +1,8 @@
 'use client';
 
-import { motion } from "motion/react";
 import "../globals.scss";
 import classes from "./page.module.scss";
+import RevealOnScroll from "@/components/atoms/reveal-on-scroll/RevealOnScroll";
 
 export default function ProfilePage() {
 
@@ -12,12 +12,7 @@ export default function ProfilePage() {
 
       {/* Chi è Silvia Innocenti - Blocco 1: fino a "carriera" */}
       <div className='section'>
-        <motion.div className={classes.profileSection} style={{justifyContent: 'space-between'}}
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
+        <RevealOnScroll className={classes.profileSection} style={{ justifyContent: 'space-between' }}>
           <div className={classes.profileTextContainer}>
             <h2>Chi è Silvia Innocenti</h2>
             <p>
@@ -39,17 +34,12 @@ export default function ProfilePage() {
           <div className={classes.photoContainer}>
             <img src="/profile.jpg" alt="Silvia Innocenti" className={classes.profileImage} />
           </div>
-        </motion.div>
+        </RevealOnScroll>
       </div>
 
       {/* Blocco 2: fino a "percorso" */}
       <div className='section'>
-        <motion.div className={classes.profileSection}
-          initial={{ opacity: 0, x: 20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
+        <RevealOnScroll className={classes.profileSection}>
           <div className={classes.profileTextContainer}>
             <p>
               Numerosi sono i progetti e gli interventi di Restauro, Ristrutturazione
@@ -77,17 +67,12 @@ export default function ProfilePage() {
               passione, cura e dedizione che da sempre contraddistinguono il suo percorso.
             </p>
           </div>
-        </motion.div>
+        </RevealOnScroll>
       </div>
 
       {/* Collaborazioni */}
       <div className="section">
-        <motion.div className={classes.profileSection}
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
+        <RevealOnScroll className={classes.profileSection}>
           <div className={classes.profileTextContainer}>
             <h2>Collaborazioni</h2>
             <p>
@@ -97,17 +82,12 @@ export default function ProfilePage() {
               delle idee condivise e dall'integrazione sinergica di competenze specialistiche.
             </p>
           </div>
-        </motion.div>
+        </RevealOnScroll>
       </div>
 
       {/* Mission */}
       <div className='section'>
-        <motion.div className={classes.profileSection}
-          initial={{ opacity: 0, x: 20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
+        <RevealOnScroll className={classes.profileSection}>
           <div className={classes.profileTextContainer}>
             <h2>Mission</h2>
             <p>
@@ -136,7 +116,7 @@ export default function ProfilePage() {
               artigianale: fatto su misura, costruito con attenzione, sensibilità e passione.
             </p>
           </div>
-        </motion.div>
+        </RevealOnScroll>
       </div>
     </main>
   )

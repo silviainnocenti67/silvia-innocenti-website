@@ -156,11 +156,12 @@ export default function Contatti() {
           </div>
 
           <div className={classes.contactsList}>
-            <h2 style={{ width: '100%', textAlign: 'right' }}>I miei contatti</h2>
+            <h2 style={{ width: '100%', textAlign: 'right' }}>Recapiti</h2>
             <p>Puoi contattarmi tramite i seguenti canali:</p>
             <div className={classes.contactsItems}>
-              <p><strong>Telefono:</strong> +39 123 1234 1234</p>
-              <p><strong>Email:</strong> silviaInnocenti@mail.com</p>
+              <p><strong>Telefono:</strong> +39 338 2137308</p>
+              <p><strong>Email:</strong> silviainnocentiarch@gmail.com</p>
+              <p><strong>Indirizzo:</strong> Via Fiume, 9 - 35139 Padova</p>
             </div>
           </div>
         </div>
@@ -168,7 +169,7 @@ export default function Contatti() {
 
       {/* Office section */}
       <div className="section">
-        <h2>La mia sede</h2>
+        <h2>Sede</h2>
         <p className={classes.studioIntro}>
           Il mio studio si trova nel cuore del centro storico di Padova.
         </p>
