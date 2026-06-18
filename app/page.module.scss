@@ -79,8 +79,12 @@
 }
 
 .profileImage {
-    height: auto;
+    width: 340px;
+    height: 340px;
+    object-fit: cover;
+    object-position: center 35%;
     border-radius: 50%;
+    flex-shrink: 0;
 }
 
 .profileLink {
@@ -104,6 +108,7 @@
 
     .profileImage {
         width: 300px;
+        height: 300px;
     }
 }
 
@@ -126,6 +131,7 @@
 
     .profileImage {
         width: 250px;
+        height: 250px;
     }
 
     .profileLink {

@@ -6,7 +6,8 @@ import classes from './MobileNavbar.module.scss'
 import { useRouter } from 'next/navigation';
 import { AnimatePresence, motion, useAnimate } from 'motion/react';
 import { ChevronDown } from 'lucide-react';
-import { ProjectTypes } from '@/enums/projectTypes.enum';
+import { PROJECT_TYPE_LABELS } from '@/enums/projectTypes.enum';
+import { availableProjectTypes } from '@/data/projects';
 import BlackOpaqueBg from '@/components/atoms/black-opaque-bg/BlackOpaqueBg';
 
 /**
@@ -125,10 +126,9 @@ export default function MobileNavbar() {
                           transition={{ duration: 0.2 }}
                         >
                           <Link href="/progetti" className={classes.link} onClick={handleMenuDropdown}>Tutti</Link>
-                          <Link href={`/progetti?type=${ProjectTypes.RISTRUTTURAZIONE}`} className={classes.link} onClick={handleMenuDropdown}>Ristrutturazione</Link>
-                          <Link href={`/progetti?type=${ProjectTypes.NUOVA_COSTRUZIONE}`} className={classes.link} onClick={handleMenuDropdown}>Nuova costruzione</Link>
-                          <Link href={`/progetti?type=${ProjectTypes.RESTAURO}`} className={classes.link} onClick={handleMenuDropdown}>Restauro</Link>
-                          <Link href={`/progetti?type=${ProjectTypes.INTERIOR_DESIGN}`} className={classes.link} onClick={handleMenuDropdown}>Interior design</Link>
+                          {availableProjectTypes.map((type) => (
+                            <Link key={type} href={`/progetti?type=${type}`} className={classes.link} onClick={handleMenuDropdown}>{PROJECT_TYPE_LABELS[type]}</Link>
+                          ))}
                         </motion.div>
                       )
                     }

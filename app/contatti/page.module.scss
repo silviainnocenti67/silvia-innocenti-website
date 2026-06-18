@@ -63,6 +63,37 @@
     text-align: right;
 }
 
+.studioIntro {
+    width: 100%;
+    text-align: left;
+    margin-bottom: 1.5rem;
+}
+
+.studioGallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 2.5rem;
+}
+
+.studioImage {
+    height: 320px;
+    width: auto;
+    max-width: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    display: block;
+}
+
+@media screen and (max-width: 699px) {
+    .studioImage {
+        height: auto;
+        width: 100%;
+    }
+}
+
 .buttonSection {
     display: flex;
     justify-content: flex-end;

@@ -37,7 +37,7 @@ export default function ProfilePage() {
             </p>
           </div>
           <div className={classes.photoContainer}>
-            <img src="/profile-photo.png" alt="Profile Image" className={classes.profileImage} />
+            <img src="/profile.jpg" alt="Silvia Innocenti" className={classes.profileImage} />
           </div>
         </motion.div>
       </div>

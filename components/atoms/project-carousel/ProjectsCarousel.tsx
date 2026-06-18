@@ -12,6 +12,10 @@ import { useRouteLoader } from '@/components/providers/RouteLoaderProvider';
 export default function ProjectsCarousel() {
     /** Projects covers to be rendered. */
     const covers = projects.map(project => project.cover);
+    /** Ripeti le cover abbastanza da riempire viewport ampi: garantisce un loop
+     *  continuo (senza spazi vuoti) anche con pochi progetti. */
+    const repeats = Math.max(1, Math.ceil(8 / Math.max(covers.length, 1)));
+    const repeatedCovers = Array.from({ length: repeats }, () => covers).flat();
     /** Router instance. */
     const router = useRouter();
     /** Route loader hook. */
@@ -30,7 +34,7 @@ export default function ProjectsCarousel() {
         <div className={styles.carouselWrapper}>
             <div className={styles.carouselContainer} onClick={goToProjects}>
                 {/* Primo set di immagini */}
-                {covers.map((cover, index) => (
+                {repeatedCovers.map((cover, index) => (
                     <div key={`original-${index}`} className={styles.imageWrapper}>
                         <Image
                             src={cover ?? ""}
@@ -43,13 +47,13 @@ export default function ProjectsCarousel() {
                 ))}
 
                 {/* Duplicato per l'effetto infinito */}
-                {covers.map((cover, index) => (
+                {repeatedCovers.map((cover, index) => (
                     <div key={`duplicate-${index}`} className={styles.imageWrapper}>
                         <Image
                             src={cover ?? ""}
                             alt={`Project Cover ${index + 1}`}
                             width={500}
-                            height={500}
+                            height={400}
                             className={styles.image}
                         />
                     </div>

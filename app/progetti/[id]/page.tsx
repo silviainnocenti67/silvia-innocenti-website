@@ -2,6 +2,8 @@ import { projects } from "@/data/projects";
 import "../../globals.scss";
 import classes from "./page.module.scss";
 import CustomMasonry from "@/components/molecules/custom-masonry/CustomMasonry";
+import BeforeAfterCarousel from "@/components/molecules/before-after-carousel/BeforeAfterCarousel";
+import { PROJECT_TYPE_LABELS } from "@/enums/projectTypes.enum";
 import { notFound } from "next/navigation";
 
 type Props = {
@@ -10,8 +12,8 @@ type Props = {
 
 /**
  * Project Details Page Component
- * This component represents the details page for a specific project 
- * based on the slug provided in the URL.
+ * This component represents the details page for a specific project
+ * based on the id provided in the URL.
  */
 export default async function ProjectDetailsPage({ params }: Props) {
   /** Project ID string */
@@ -25,26 +27,6 @@ export default async function ProjectDetailsPage({ params }: Props) {
     notFound();
   }
 
-  /**
-   * Get the project type label.
-   * @param type the type value.
-   * @returns the corresponding label for the project type.
-   */
-  function getProjectTypeLabel(type: string) {
-    switch (type) {
-      case 'ristrutturazione':
-        return 'Ristrutturazione';
-      case 'nuova_costruzione':
-        return 'Nuova Costruzione';
-      case 'restauro':
-        return 'Restauro';
-      case 'interior_design':
-        return 'Interior Design';
-      default:
-        return type;
-    }
-  }
-
   return (
     <main className="main">
       {/* Preview */}
@@ -56,25 +38,43 @@ export default async function ProjectDetailsPage({ params }: Props) {
         </div>
       </div>
 
-      {/* Description */}
+      {/* Dettagli */}
       <div className="section">
         <h2>Dettagli</h2>
         <div className={classes.characteristicsContainer}>
-          <p><strong>Data: </strong>{project.date}</p>
-          <p><strong>Luogo: </strong>{project.location}</p>
-          <p><strong>Tipo: </strong>{getProjectTypeLabel(project.type)}</p>
+          {project.location && <p><strong>Luogo: </strong>{project.location}</p>}
+          <p><strong>Tipo: </strong>{PROJECT_TYPE_LABELS[project.type]}</p>
+          {project.date && <p><strong>Data: </strong>{project.date}</p>}
         </div>
-        <div className={classes.descriptionContainer}>
-          <p>{project.description}</p>
-        </div>
+        {project.description && (
+          <div className={classes.descriptionContainer}>
+            <p>{project.description}</p>
+          </div>
+        )}
       </div>
 
-      {/* Gallery */}
-      <div className="section">
-        <h2>Galleria</h2>
-        {/* Masonry Custom */}
-        <CustomMasonry images={project.collection ?? []} />
-      </div>
+      {/* Prima e dopo */}
+      {project.beforeAfter && project.beforeAfter.length > 0 && (
+        <div className="section">
+          <h2>Prima e dopo</h2>
+          <BeforeAfterCarousel pairs={project.beforeAfter} />
+        </div>
+      )}
+
+      {/* Gallerie */}
+      {project.galleries && project.galleries.length > 0 ? (
+        project.galleries.map((gallery, i) => (
+          <div className="section" key={i}>
+            <h2>{gallery.title}</h2>
+            <CustomMasonry images={gallery.images} />
+          </div>
+        ))
+      ) : (
+        <div className="section">
+          <h2>Galleria</h2>
+          <CustomMasonry images={project.collection ?? []} />
+        </div>
+      )}
     </main>
   )
 }

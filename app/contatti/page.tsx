@@ -169,6 +169,14 @@ export default function Contatti() {
       {/* Office section */}
       <div className="section">
         <h2>La mia sede</h2>
+        <p className={classes.studioIntro}>
+          Il mio studio si trova nel cuore del centro storico di Padova.
+        </p>
+        <div className={classes.studioGallery}>
+          <img src="/studio/1.jpg" alt="Interno dello studio di architettura" className={classes.studioImage} />
+          <img src="/studio/2.jpg" alt="Torre dell'Orologio, Padova" className={classes.studioImage} />
+          <img src="/studio/3.jpg" alt="Palazzo della Ragione, Padova" className={classes.studioImage} />
+        </div>
         <Maps />
       </div>
     </main>

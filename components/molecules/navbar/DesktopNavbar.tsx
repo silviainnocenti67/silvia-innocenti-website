@@ -6,7 +6,8 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import classes from "./DesktopNavbar.module.scss";
-import { ProjectTypes } from "@/enums/projectTypes.enum";
+import { PROJECT_TYPE_LABELS } from "@/enums/projectTypes.enum";
+import { availableProjectTypes } from "@/data/projects";
 
 /**
  * The desktop version of the navigation bar.
@@ -69,10 +70,9 @@ export default function DesktopNavbar() {
                   transition={{ duration: 0.2 }}
                 >
                   <Link href="/progetti" className={classes.link} onClick={resetDropdown}>Tutti</Link>
-                  <Link href={`/progetti?type=${ProjectTypes.RISTRUTTURAZIONE}`} className={classes.link} onClick={resetDropdown}>Ristrutturazione</Link>
-                  <Link href={`/progetti?type=${ProjectTypes.NUOVA_COSTRUZIONE}`} className={classes.link} onClick={resetDropdown}>Nuova costruzione</Link>
-                  <Link href={`/progetti?type=${ProjectTypes.RESTAURO}`} className={classes.link} onClick={resetDropdown}>Restauro</Link>
-                  <Link href={`/progetti?type=${ProjectTypes.INTERIOR_DESIGN}`} className={classes.link} onClick={resetDropdown}>Interior design</Link>
+                  {availableProjectTypes.map((type) => (
+                    <Link key={type} href={`/progetti?type=${type}`} className={classes.link} onClick={resetDropdown}>{PROJECT_TYPE_LABELS[type]}</Link>
+                  ))}
                 </motion.div>
               )
             }
