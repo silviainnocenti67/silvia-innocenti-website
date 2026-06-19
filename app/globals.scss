@@ -2,6 +2,9 @@
   --background: #ffffff;
   --si-grey: #8d8c8b;
   --si-grey-light: hsl(36, 5%, 81%);
+  /* Larghezza massima fissa del contenuto delle pagine (modificabile qui) */
+  --content-width: 1200px;
+  --content-gutter: 24px;
 }
 
 body {
@@ -48,8 +51,10 @@ p {
 }
 
 .section {
-  padding-left: 10%;
-  padding-right: 10%;
+  width: 100%;
+  max-width: var(--content-width);
+  margin-inline: auto;
+  padding-inline: var(--content-gutter);
   display: flex;
   flex-direction: column;
   gap: 20px;
