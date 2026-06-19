@@ -3,7 +3,7 @@
 import React, { useState } from 'react'
 import Masonry from 'react-masonry-css';
 import classes from './CustomMasonry.module.scss';
-import { motion, spring } from 'framer-motion';
+import { motion } from 'framer-motion';
 import "yet-another-react-lightbox/styles.css";
 import Lightbox from 'yet-another-react-lightbox';
 
@@ -39,20 +39,10 @@ export default function CustomMasonry({ images }: Props) {
       >
         {images.map((image, i) => (
           <motion.img
-            layoutId={`activities-${i}`}
-            initial={{
-              y: +100,
-              opacity: 0
-            }}
-            whileInView={{
-              y: 0,
-              opacity: 1
-            }}
-            transition={{
-              duration: 1,
-              type: spring
-            }}
-            viewport={{ once: true }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
+            viewport={{ once: true, amount: 0.1 }}
             key={i}
             src={image}
             alt=""

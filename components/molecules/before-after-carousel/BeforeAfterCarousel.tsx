@@ -1,6 +1,7 @@
 'use client';
 
 import { useRef, useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import classes from './BeforeAfterCarousel.module.scss';
 import { BeforeAfterPair } from '@/interfaces/Project.interface';
@@ -73,15 +74,26 @@ export default function BeforeAfterCarousel({ pairs }: Props) {
             e.currentTarget.releasePointerCapture(e.pointerId);
           }}
         >
-          {/* DOPO (base) */}
-          <img src={pair.after} alt="Dopo" className={classes.image} draggable={false} />
-          <span className={`${classes.tag} ${classes.tagAfter}`}>DOPO</span>
+          <AnimatePresence>
+            <motion.div
+              key={idx}
+              className={classes.comparison}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.35, ease: 'easeOut' }}
+            >
+              {/* DOPO (base) */}
+              <img src={pair.after} alt="Dopo" className={classes.image} draggable={false} />
+              <span className={`${classes.tag} ${classes.tagAfter}`}>DOPO</span>
 
-          {/* PRIMA (rivelato sulla sinistra) */}
-          <div className={classes.beforeLayer} style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }}>
-            <img src={pair.before} alt="Prima" className={classes.image} draggable={false} />
-            <span className={`${classes.tag} ${classes.tagBefore}`}>PRIMA</span>
-          </div>
+              {/* PRIMA (rivelato sulla sinistra) */}
+              <div className={classes.beforeLayer} style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }}>
+                <img src={pair.before} alt="Prima" className={classes.image} draggable={false} />
+                <span className={`${classes.tag} ${classes.tagBefore}`}>PRIMA</span>
+              </div>
+            </motion.div>
+          </AnimatePresence>
 
           {/* Maniglia */}
           <div className={classes.divider} style={{ left: `${pos}%` }}>

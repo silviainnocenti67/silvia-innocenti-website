@@ -91,19 +91,13 @@
 
 @media screen and (max-width: 900px) {
     .studioGallery {
-        height: 360px;
-    }
-}
-
-@media screen and (max-width: 699px) {
-    .studioGallery {
         flex-direction: column;
         height: auto;
     }
 
     .studioImage {
         width: 100%;
-        height: 220px;
+        height: auto;
         flex: none;
     }
 }
