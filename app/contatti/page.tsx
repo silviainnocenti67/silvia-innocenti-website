@@ -4,7 +4,7 @@ import "@/app/globals.scss";
 import classes from "./page.module.scss";
 import SIButton from "@/components/atoms/button/SIButton";
 import Maps from "@/components/atoms/maps/Maps";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import LoadingCircle from "@/components/atoms/loading-circle/LoadingCircle";
 import { Inter } from "next/font/google";
 
@@ -41,6 +41,14 @@ export default function Contatti() {
   const formRef = useRef<HTMLFormElement>(null);
   // Form validity state.
   const [isValid, setIsValid] = useState(false);
+  // Honeypot anti-spam field (invisibile agli utenti, compilato solo dai bot).
+  const honeypotRef = useRef<HTMLInputElement>(null);
+  // Timestamp di caricamento del form (time-trap anti-spam).
+  const formLoadedAt = useRef(0);
+
+  useEffect(() => {
+    formLoadedAt.current = Date.now();
+  }, []);
 
   /**
    * Check form validity and update state.
@@ -57,6 +65,12 @@ export default function Contatti() {
    */
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+
+    // Anti-spam honeypot: se il campo nascosto è compilato, è un bot → ignora.
+    if (honeypotRef.current?.value) return;
+    // Anti-spam time-trap: invio sospettosamente rapido (< 3s) → probabile bot.
+    if (formLoadedAt.current && Date.now() - formLoadedAt.current < 3000) return;
+
     setLoading(true);
     setMessage(null);
     try {
@@ -104,6 +118,11 @@ export default function Contatti() {
           <div className={classes.contactsSection}>
             <h2 style={{ width: '100%', textAlign: 'left' }}>Invia una richiesta</h2>
             <form className={classes.form} onSubmit={handleSubmit} ref={formRef}>
+              {/* Honeypot anti-spam: invisibile agli utenti, compilato solo dai bot */}
+              <div className={classes.honeypot} aria-hidden="true">
+                <label htmlFor="website">Non compilare questo campo</label>
+                <input type="text" id="website" name="website" ref={honeypotRef} tabIndex={-1} autoComplete="off" />
+              </div>
               <div className={classes.formInput}>
                 <label htmlFor="name">Nome</label>
                 <input
