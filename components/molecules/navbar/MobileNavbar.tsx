@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import classes from './MobileNavbar.module.scss'
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { AnimatePresence, motion, useAnimate } from 'motion/react';
 import { ChevronDown } from 'lucide-react';
 import { PROJECT_TYPE_LABELS } from '@/enums/projectTypes.enum';
@@ -20,8 +20,19 @@ export default function MobileNavbar() {
   const [isProjectSectionOpen, setIsProjectSectionOpen] = useState(false);
   /** Router instance. */
   const router = useRouter();
+  /** Current pathname, used to highlight the active nav link. */
+  const pathname = usePathname();
   /** Animation scope and controller. */
   const [scope, animate] = useAnimate();
+
+  /**
+   * Whether the given route is the one currently active.
+   * For non-home routes also matches nested paths (es. /progetti/1).
+   * @param href route to check
+   */
+  function isActive(href: string) {
+    return href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(`${href}/`);
+  }
 
   /**
    * Handles menu dropdown toggle.
@@ -106,9 +117,9 @@ export default function MobileNavbar() {
                 onAnimationComplete={animateLinksPresence}
                 ref={scope}
               >
-                <Link href="/" className={classes.link} onClick={handleMenuDropdown} style={{ opacity: 0 }}>Home</Link>
+                <Link href="/" className={`${classes.link} ${isActive("/") ? classes.active : ""}`} onClick={handleMenuDropdown} style={{ opacity: 0 }}>Home</Link>
                 <div className={classes.projectsDropdownLinks} onClick={handleProjectSectionDropdown} style={{ opacity: 0 }}>
-                  <p className={classes.link}>Progetti</p>
+                  <p className={`${classes.link} ${isActive("/progetti") ? classes.active : ""}`}>Progetti</p>
                   <motion.div className={classes.dropdownIconContainer}
                     animate={{ rotate: isProjectSectionOpen ? 180 : 0 }}
                     transition={{ duration: 0.2 }}
@@ -134,8 +145,8 @@ export default function MobileNavbar() {
                     }
                   </AnimatePresence>
                 </div>
-                <Link href="/profilo" className={classes.link} onClick={handleMenuDropdown} style={{ opacity: 0 }}>Profilo</Link>
-                <Link href="/contatti" className={classes.link} onClick={handleMenuDropdown} style={{ opacity: 0 }}>Contatti</Link>
+                <Link href="/profilo" className={`${classes.link} ${isActive("/profilo") ? classes.active : ""}`} onClick={handleMenuDropdown} style={{ opacity: 0 }}>Profilo</Link>
+                <Link href="/contatti" className={`${classes.link} ${isActive("/contatti") ? classes.active : ""}`} onClick={handleMenuDropdown} style={{ opacity: 0 }}>Contatti</Link>
               </motion.div>
             )
           }

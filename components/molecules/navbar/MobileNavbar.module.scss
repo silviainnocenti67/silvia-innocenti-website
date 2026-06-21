@@ -126,6 +126,13 @@
   color: var(--si-black);
 }
 
+.active {
+  color: var(--si-black);
+  text-decoration: underline;
+  text-underline-offset: 6px;
+  text-decoration-thickness: 1px;
+}
+
 .dropdownIconContainer {
   display: flex;
   align-items: center;
