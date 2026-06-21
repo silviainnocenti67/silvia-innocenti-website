@@ -33,25 +33,27 @@ export default async function ProjectDetailsPage({ params }: Props) {
       <div className="section">
         <div className={classes.projectPreviewContainer}>
           <img src={project.cover ?? ""} alt={project.title ?? ""} className={classes.projectPreviewImage} />
-          <h1 className={classes.projectTitle}>{project.title}</h1>
+          <div className={classes.heroContent}>
+            <h1 className={classes.projectTitle}>{project.title}</h1>
+            <div className={classes.heroMeta}>
+              <span>{PROJECT_TYPE_LABELS[project.type]}</span>
+              {project.location && <span>{project.location}</span>}
+              {project.date && <span>{project.date}</span>}
+            </div>
+          </div>
           <div className={classes.overlay} />
         </div>
       </div>
 
-      {/* Dettagli */}
-      <div className="section">
-        <h2>Dettagli</h2>
-        <div className={classes.characteristicsContainer}>
-          {project.location && <p><strong>Luogo: </strong>{project.location}</p>}
-          <p><strong>Tipo: </strong>{PROJECT_TYPE_LABELS[project.type]}</p>
-          {project.date && <p><strong>Data: </strong>{project.date}</p>}
-        </div>
-        {project.description && (
+      {/* Descrizione */}
+      {project.description && (
+        <div className="section">
+          <h2>Descrizione</h2>
           <div className={classes.descriptionContainer}>
             <p>{project.description}</p>
           </div>
-        )}
-      </div>
+        </div>
+      )}
 
       {/* Prima e dopo */}
       {project.beforeAfter && project.beforeAfter.length > 0 && (

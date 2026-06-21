@@ -5,6 +5,8 @@
   /* Larghezza massima fissa del contenuto delle pagine (modificabile qui) */
   --content-width: 1200px;
   --content-gutter: 24px;
+  /* Spaziatura uniforme: navbar→titolo, titolo→sezioni, sezione→sezione, contenuto→footer */
+  --page-gap: 70px;
 }
 
 body {
@@ -24,8 +26,8 @@ main {
   width: 100%;
   justify-content: start;
   flex-direction: column;
-  gap: 100px;
-  padding-top: 50px;
+  gap: var(--page-gap);
+  padding-top: var(--page-gap);
   min-height: 90vh;
 }
 
@@ -62,8 +64,8 @@ p {
 
 @media screen and (max-width: 699px) {
   main {
-    padding-top: 120px;
-    gap: 70px;
+    /* 50px riservati alla navbar mobile (absolute) + gap uniforme */
+    padding-top: calc(50px + var(--page-gap));
   }
 
   h1 {

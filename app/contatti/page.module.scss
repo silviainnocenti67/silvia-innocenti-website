@@ -90,6 +90,7 @@
     min-width: 0;
     object-fit: cover;
     display: block;
+    cursor: pointer;
 }
 
 .studioImage:nth-child(1) { flex: 3 1 0; }

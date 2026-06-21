@@ -7,12 +7,21 @@ import Maps from "@/components/atoms/maps/Maps";
 import { useEffect, useRef, useState } from "react";
 import LoadingCircle from "@/components/atoms/loading-circle/LoadingCircle";
 import { Inter } from "next/font/google";
+import Lightbox from "yet-another-react-lightbox";
+import "yet-another-react-lightbox/styles.css";
 
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
   display: "swap",
 });
+
+/** Immagini della sede/studio, mostrate in galleria e nel lightbox. */
+const studioImages = [
+  { src: "/studio/1.jpg", alt: "Interno dello studio di architettura" },
+  { src: "/studio/2.jpg", alt: "Torre dell'Orologio, Padova" },
+  { src: "/studio/3.jpg", alt: "Palazzo della Ragione, Padova" },
+];
 
 /**
  * Type for form submission data.
@@ -45,10 +54,23 @@ export default function Contatti() {
   const honeypotRef = useRef<HTMLInputElement>(null);
   // Timestamp di caricamento del form (time-trap anti-spam).
   const formLoadedAt = useRef(0);
+  // Stato del lightbox per le immagini della sede.
+  const [isStudioBoxOpen, setIsStudioBoxOpen] = useState(false);
+  // Indice dell'immagine sede attualmente aperta nel lightbox.
+  const [studioIndex, setStudioIndex] = useState(0);
 
   useEffect(() => {
     formLoadedAt.current = Date.now();
   }, []);
+
+  /**
+   * Apre il lightbox sull'immagine della sede selezionata.
+   * @param i indice dell'immagine da aprire
+   */
+  function openStudioLightbox(i: number) {
+    setStudioIndex(i);
+    setIsStudioBoxOpen(true);
+  }
 
   /**
    * Check form validity and update state.
@@ -79,12 +101,13 @@ export default function Contatti() {
       //   action: 'contact_form'
       // });
 
-      // Send data to the script
+      // Send data to the script.
+      // NB: niente header 'Content-Type: application/json', altrimenti il
+      // browser fa scattare un preflight CORS (OPTIONS) che Google Apps Script
+      // non sa gestire. Senza header la richiesta è "semplice" e passa; lo
+      // script fa comunque JSON.parse(e.postData.contents).
       const response = await fetch(process.env.NEXT_PUBLIC_SCRIPT_URL ?? "", {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
         body: JSON.stringify({
           ...formData,
           // recaptcha_token: token
@@ -193,12 +216,26 @@ export default function Contatti() {
           Il mio studio si trova nel cuore del centro storico di Padova.
         </p>
         <div className={classes.studioGallery}>
-          <img src="/studio/1.jpg" alt="Interno dello studio di architettura" className={classes.studioImage} />
-          <img src="/studio/2.jpg" alt="Torre dell'Orologio, Padova" className={classes.studioImage} />
-          <img src="/studio/3.jpg" alt="Palazzo della Ragione, Padova" className={classes.studioImage} />
+          {studioImages.map((img, i) => (
+            <img
+              key={i}
+              src={img.src}
+              alt={img.alt}
+              className={classes.studioImage}
+              onClick={() => openStudioLightbox(i)}
+            />
+          ))}
         </div>
         <Maps />
       </div>
+
+      <Lightbox
+        noScroll={{ disabled: true }}
+        open={isStudioBoxOpen}
+        index={studioIndex}
+        close={() => setIsStudioBoxOpen(false)}
+        slides={studioImages.map((img) => ({ src: img.src, alt: img.alt }))}
+      />
     </main>
   );
-}   
+}

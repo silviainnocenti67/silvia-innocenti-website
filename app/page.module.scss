@@ -6,7 +6,8 @@
     overflow: hidden;
     position: relative;
     background-color: black;
-    margin-top: -50px;
+    /* Annulla il padding-top del main: l'hero resta a tutto schermo sotto la navbar */
+    margin-top: calc(-1 * var(--page-gap));
 }
 
 .heroSection:hover>.heroImage {

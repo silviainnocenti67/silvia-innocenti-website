@@ -1,5 +1,5 @@
 .footer {
-    margin-top: 100px;
+    margin-top: var(--page-gap);
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -118,12 +118,5 @@
 @media screen and (max-width: 600px) {
     .footerLogo{
         height: 60px;
-    }
-}
-
-/* Stesso gap del contenuto della pagina tra contenuto e footer */
-@media screen and (max-width: 699px) {
-    .footer {
-        margin-top: 70px;
     }
 }
