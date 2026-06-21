@@ -117,7 +117,8 @@
 
 @media screen and (max-width: 699px) {
     .heroSection {
-        margin-top: -34px;
+        /* Allineato al bordo inferiore della navbar mobile (più bassa) */
+        margin-top: -58px;
     }
 
     .heroQuote {
