@@ -1,0 +1,45 @@
+.profileSection {
+    display: flex;
+    align-items: center;
+    gap: 100px;
+    width: 100%;
+}
+
+.profileTextContainer {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: black;
+    text-align: left;
+}
+
+.photoContainer {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+
+.profileImage {
+    width: 340px;
+    height: 340px;
+    object-fit: cover;
+    object-position: center 35%;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+@media screen and (max-width: 1170px) {
+    .profileSection {
+        flex-direction: column;
+        gap: 30px;
+    }
+}
+
+@media screen and (max-width: 699px) {
+    .profileImage {
+        width: 280px;
+        height: 280px;
+    }
+}

@@ -1,0 +1,86 @@
+.navbarContainer {
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 40px;
+    background-color: #ffffff;
+}
+
+.logo {
+    /* Il logo è quasi quadrato: fissiamo l'altezza (la stessa che aveva il logo
+       precedente da 150px di larghezza) così la navbar non cambia dimensioni. */
+    height: 67.2px;
+    width: auto;
+}
+
+.navLinks {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.link {
+    text-decoration: none;
+    color: var(--si-grey);
+    font-weight: 400;
+    border-radius: 5px;
+    transition: color 0.3s ease-in-out;
+}
+
+.link:hover {
+    color: var(--si-black);
+}
+
+.active {
+    color: var(--si-black);
+    text-decoration: underline;
+    text-underline-offset: 6px;
+    text-decoration-thickness: 1px;
+}
+
+.dropdownLinks {
+    display: flex;
+    gap: 3px;
+    align-items: center;
+    color: var(--si-grey);
+    transition: color 0.3s ease-in-out;
+    position: relative;
+    user-select: none;
+}
+
+.dropdownLinks:hover {
+    color: black;
+    cursor: pointer;    
+}
+
+.dropdownIconContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dropdownContent {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: absolute;
+    background-color: #ffffff;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    border-radius: 5px;
+    z-index: 1;
+    top: 30px;
+    width: 200px;
+}
+
+@media screen and (min-width: 700px) {
+    .navbarContainer {
+        display: flex;
+    }
+}
+
+@media screen and (max-width: 699px) {
+    .navbarContainer {
+        display: none;
+    }
+}

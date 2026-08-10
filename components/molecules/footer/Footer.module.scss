@@ -1,0 +1,128 @@
+.footer {
+    margin-top: var(--page-gap);
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    height: 200px;
+    padding: 0 80px 40px 80px;
+
+    @media (max-width: 1450px) {
+        height: auto;
+        padding: 0 20px 40px 20px;
+    }
+}
+
+.footerContent {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0 40px;
+    height: 100%;
+
+    @media (max-width: 1450px) {
+        flex-direction: column;
+        padding: 0 20px;
+        gap: 40px;
+    }
+}
+
+.footerSection {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex: 1;
+    height: 100%;
+
+    @media (max-width: 1450px) {
+        width: 100%;
+        height: auto;
+    }
+}
+
+.footerSectionContent {
+    display: flex;
+    flex-direction: column;
+    color: var(--si-grey);
+    padding: 0 20%;
+
+    @media (max-width: 1450px) {
+        padding: 0;
+        text-align: center;
+        font-size: 0.9rem;
+    }
+}
+
+.footerLogo {
+    /* 150px è il massimo che entra nei 160px di area utile del footer
+       (200px di altezza meno i 40px di padding inferiore). */
+    height: 150px;
+
+    @media (max-width: 1450px) {
+        height: 130px;
+    }
+}
+
+.footerSectionTitle {
+    font-size: 1.5rem;
+    font-weight: 600;
+    width: 100%;
+    text-align: center;
+    color: var(--si-grey);
+
+    @media (max-width: 1450px) {
+        font-size: 1.2rem;
+    }
+}
+
+#centerSection {
+    border-left: 1px solid var(--si-grey-light);
+    border-right: 1px solid var(--si-grey-light);
+
+    @media (max-width: 1450px) {
+        border-left: none;
+        border-right: none;
+        border-top: 1px solid var(--si-grey-light);
+        border-bottom: 1px solid var(--si-grey-light);
+        padding: 40px 20px;
+    }
+}
+
+#rightSection {
+    justify-content: center;
+    align-items: center;
+}
+
+.contactsCenter {
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+}
+
+.sitemap {
+    align-items: center;
+    gap: 10px;
+
+    @media (max-width: 1450px) {
+        align-items: center;
+    }
+}
+
+.sitemapLink {
+    color: var(--si-grey);
+    text-decoration: none;
+    width: fit-content;
+
+    &:hover {
+        text-decoration: underline;
+        cursor: pointer;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .footerLogo{
+        height: 110px;
+    }
+}

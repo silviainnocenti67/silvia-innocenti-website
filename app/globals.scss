@@ -1,7 +1,13 @@
 :root {
-  --background: #ffffff; // To chenge for the website
-  --si-grey: #9b9895;
+  --background: #ffffff;
+  --si-grey: #8d8c8b;
   --si-grey-light: hsl(36, 5%, 81%);
+  --si-black: #1a1a1a;
+  /* Larghezza massima fissa del contenuto delle pagine (modificabile qui) */
+  --content-width: 1200px;
+  --content-gutter: 24px;
+  /* Spaziatura uniforme: navbar→titolo, titolo→sezioni, sezione→sezione, contenuto→footer */
+  --page-gap: 70px;
 }
 
 body {
@@ -19,9 +25,11 @@ body {
 main {
   display: flex;
   width: 100%;
-  justify-content: center;
+  justify-content: start;
   flex-direction: column;
-  gap: 100px;
+  gap: var(--page-gap);
+  padding-top: var(--page-gap);
+  min-height: 90vh;
 }
 
 h1 {
@@ -46,10 +54,34 @@ p {
 }
 
 .section {
-  padding-left: 10%;
-  padding-right: 10%;
+  width: 100%;
+  max-width: var(--content-width);
+  margin-inline: auto;
+  padding-inline: var(--content-gutter);
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
+@media screen and (max-width: 699px) {
+  main {
+    /* 50px riservati alla navbar mobile (absolute) + gap uniforme */
+    padding-top: calc(50px + var(--page-gap));
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+  }
+
+  p {
+    font-size: 0.9rem;
+  }
+
+  .section {
+    padding: 0 20px;
+  }
+}

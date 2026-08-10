@@ -1,0 +1,13 @@
+.loadingContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  z-index: 1000;
+  background-color: hsla(0, 0%, 100%, 0.623);
+  backdrop-filter: blur(5px);
+}

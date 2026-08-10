@@ -1,0 +1,90 @@
+.carouselWrapper {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    padding: 2rem 0;
+}
+
+.carouselContainer {
+    display: flex;
+    width: max-content;
+    gap: 0; // Immagini attaccate
+    animation: scroll 120s linear infinite;
+  
+    &:hover {
+      cursor: pointer;
+    }
+}
+
+.imageWrapper {
+    flex-shrink: 0;
+    width: 500px;
+    height: 400px;
+    position: relative;
+    overflow: hidden;
+}
+
+.image {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.6);
+    }
+}
+
+.projectsLink {
+    position: absolute;
+    bottom: 3rem;
+    right: 2rem;
+    color: white;
+    font-size: 1.2rem;
+    z-index: 10;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+
+    &:hover {
+        text-decoration: underline;
+        cursor: pointer;
+    }
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+// Responsive
+@media (max-width: 768px) {
+    .imageWrapper {
+        width: 300px;
+        height: 225px;
+    }
+    
+    .label {
+        font-size: 1.2rem;
+        bottom: 2rem;
+        left: 1rem;
+    }
+}
+
+@media screen and (max-width: 699px) {
+    .projectsLink {
+        font-size: 0.9rem;
+    }
+}
+
