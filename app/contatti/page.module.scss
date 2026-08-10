@@ -129,6 +129,20 @@
     box-shadow: 0 0 5px rgba(102, 102, 102, 0.5);
 }
 
+.inputError {
+    border-color: #b3261e;
+}
+
+.inputError:focus {
+    border-color: #b3261e;
+    box-shadow: 0 0 5px rgba(179, 38, 30, 0.4);
+}
+
+.fieldError {
+    font-size: 0.85rem;
+    color: #b3261e;
+}
+
 @media screen and (max-width: 1200px) {
   .contactsContainer {
     flex-direction: column-reverse;

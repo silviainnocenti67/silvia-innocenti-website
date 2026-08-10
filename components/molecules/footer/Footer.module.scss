@@ -56,7 +56,13 @@
 }
 
 .footerLogo {
-    height: 80px;
+    /* 150px è il massimo che entra nei 160px di area utile del footer
+       (200px di altezza meno i 40px di padding inferiore). */
+    height: 150px;
+
+    @media (max-width: 1450px) {
+        height: 130px;
+    }
 }
 
 .footerSectionTitle {
@@ -117,6 +123,6 @@
 
 @media screen and (max-width: 600px) {
     .footerLogo{
-        height: 60px;
+        height: 110px;
     }
 }

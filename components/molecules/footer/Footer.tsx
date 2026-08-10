@@ -10,7 +10,7 @@ export default function Footer() {
         <div className={classes.footerContent}>
           {/* Left Section: logo */}
           <div className={classes.footerSection} id={classes.rightSection}>
-            <img src="/better-logo-grey.svg" alt="Footer Logo" className={classes.footerLogo} />
+            <img src="/logo-cad-grey.svg" alt="Footer Logo" className={classes.footerLogo} />
           </div>
 
           {/* Center Section: Pagine */}

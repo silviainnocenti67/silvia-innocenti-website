@@ -56,7 +56,7 @@ export default function DesktopNavbar() {
   return (
     <div className={classes.navbarContainer}>
       {/* Logo Section */}
-      <img src="/better-logo.svg" alt="Logo" className={classes.logo} onClick={navigateToHome}/>
+      <img src="/logo-cad.svg" alt="Logo" className={classes.logo} onClick={navigateToHome}/>
 
       {/* Main Navigation Links */}
       <div className={classes.navLinks}>

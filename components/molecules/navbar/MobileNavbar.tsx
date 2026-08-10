@@ -76,7 +76,7 @@ export default function MobileNavbar() {
       <motion.div className={classes.mobileNavbarContainer}>
         {/* Header section */}
         <div className={classes.headerContainer}>
-          <img src="/better-logo.svg" alt="Logo" className={classes.logo} onClick={goToHome} />
+          <img src="/logo-cad.svg" alt="Logo" className={classes.logo} onClick={goToHome} />
 
           <div className={classes.hamburgerMenu} onClick={handleMenuDropdown}>
             <span className={`${classes.line1} ${isMenuOpen && classes.toggleLine1}`} />

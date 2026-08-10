@@ -110,8 +110,10 @@
 }
 
 .logo {
-  width: 115px;
-  height: auto;
+  /* Il logo è quasi quadrato: fissiamo l'altezza (la stessa che aveva il logo
+     precedente da 115px di larghezza) così la navbar non cambia dimensioni. */
+  height: 51.5px;
+  width: auto;
 }
 
 .link {

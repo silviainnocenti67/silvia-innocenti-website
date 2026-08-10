@@ -36,6 +36,24 @@ type SubmissionData = {
 }
 
 /**
+ * Formato email accettato. Più severo del type="email" del browser, che
+ * considera valido anche "nome@dominio" senza estensione.
+ */
+const EMAIL_REGEX = /^[^\s@]+@[^\s@.]+(\.[^\s@.]+)*\.[A-Za-z]{2,}$/;
+
+/**
+ * Valida l'indirizzo email inserito.
+ * @param value valore grezzo del campo email
+ * @returns il messaggio di errore da mostrare, oppure null se l'email è valida
+ */
+function validateEmail(value: string): string | null {
+  const email = value.trim();
+  if (!email) return "Inserisci la tua email.";
+  if (!EMAIL_REGEX.test(email)) return "Formato email non valido (es. nome@dominio.it).";
+  return null;
+}
+
+/**
  * Contacts page.
  * @returns Contacts page.
  */
@@ -50,6 +68,11 @@ export default function Contatti() {
   const formRef = useRef<HTMLFormElement>(null);
   // Form validity state.
   const [isValid, setIsValid] = useState(false);
+  // Errore di validazione dell'email, mostrato sotto al campo.
+  const [emailError, setEmailError] = useState<string | null>(null);
+  // L'utente ha già lasciato il campo email almeno una volta: solo da quel
+  // momento mostriamo l'errore, per non segnalarlo mentre sta ancora digitando.
+  const [emailTouched, setEmailTouched] = useState(false);
   // Honeypot anti-spam field (invisibile agli utenti, compilato solo dai bot).
   const honeypotRef = useRef<HTMLInputElement>(null);
   // Timestamp di caricamento del form (time-trap anti-spam).
@@ -93,6 +116,15 @@ export default function Contatti() {
     // Anti-spam time-trap: invio sospettosamente rapido (< 3s) → probabile bot.
     if (formLoadedAt.current && Date.now() - formLoadedAt.current < 3000) return;
 
+    // Ricontrolla l'email anche in fase di invio: il bottone è già disabilitato
+    // se non è valida, ma il submit può arrivare comunque (es. tasto Invio).
+    const emailProblem = validateEmail(formData.email);
+    if (emailProblem) {
+      setEmailTouched(true);
+      setEmailError(emailProblem);
+      return;
+    }
+
     setLoading(true);
     setMessage(null);
     try {
@@ -110,6 +142,7 @@ export default function Contatti() {
         method: 'POST',
         body: JSON.stringify({
           ...formData,
+          email: formData.email.trim(),
           // recaptcha_token: token
         })
       });
@@ -117,6 +150,9 @@ export default function Contatti() {
       if (response.ok) {
         setMessage('Messaggio inviato con successo!');
         setFormData({ name: '', email: '', message: '' });
+        setEmailError(null);
+        setEmailTouched(false);
+        setIsValid(false);
         formRef.current?.reset();
       } else {
         setMessage('Errore di invio. Riprova.');
@@ -166,12 +202,22 @@ export default function Contatti() {
                   type="email"
                   id="email"
                   name="email"
-                  className={classes.input}
+                  className={`${classes.input} ${emailError ? classes.inputError : ''}`}
+                  aria-invalid={emailError ? true : undefined}
+                  aria-describedby={emailError ? 'email-error' : undefined}
                   onChange={(e) => {
                     setFormData({ ...formData, email: e.target.value });
+                    // Finché l'utente non ha lasciato il campo non lo correggiamo
+                    // mentre digita; dopo il primo blur l'errore si aggiorna dal vivo.
+                    if (emailTouched) setEmailError(validateEmail(e.target.value));
                     checkValidity();
                   }}
+                  onBlur={(e) => {
+                    setEmailTouched(true);
+                    setEmailError(validateEmail(e.target.value));
+                  }}
                   required />
+                {emailError && <p id="email-error" className={classes.fieldError}>{emailError}</p>}
               </div>
 
               <div className={classes.formInput}>
@@ -192,7 +238,7 @@ export default function Contatti() {
               <div className={classes.buttonSection}>
                 {message && <p className={classes.message}>{message}</p>}
                 {loading && <LoadingCircle />}
-                {!loading && <SIButton text="Invia" type="submit" disabled={loading || !isValid} />}
+                {!loading && <SIButton text="Invia" type="submit" disabled={loading || !isValid || validateEmail(formData.email) !== null} />}
               </div>
             </form>
           </div>
