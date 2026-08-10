@@ -22,13 +22,24 @@
 }
 
 .profileImage {
-    height: auto;
+    width: 340px;
+    height: 340px;
+    object-fit: cover;
+    object-position: center 35%;
     border-radius: 50%;
+    flex-shrink: 0;
 }
 
 @media screen and (max-width: 1170px) {
     .profileSection {
         flex-direction: column;
         gap: 30px;
+    }
+}
+
+@media screen and (max-width: 699px) {
+    .profileImage {
+        width: 280px;
+        height: 280px;
     }
 }

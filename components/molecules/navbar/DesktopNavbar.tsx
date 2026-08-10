@@ -3,10 +3,11 @@
 import { ChevronDown } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 import classes from "./DesktopNavbar.module.scss";
-import { ProjectTypes } from "@/enums/projectTypes.enum";
+import { PROJECT_TYPE_LABELS } from "@/enums/projectTypes.enum";
+import { availableProjectTypes } from "@/data/projects";
 
 /**
  * The desktop version of the navigation bar.
@@ -17,6 +18,18 @@ export default function DesktopNavbar() {
 
   /** Router instance for navigation */
   const router = useRouter();
+
+  /** Current pathname, used to highlight the active nav link. */
+  const pathname = usePathname();
+
+  /**
+   * Whether the given route is the one currently active.
+   * For non-home routes also matches nested paths (es. /progetti/1).
+   * @param href route to check
+   */
+  function isActive(href: string) {
+    return href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(`${href}/`);
+  }
 
   /**
    * Toggles the dropdown menu visibility.
@@ -43,15 +56,15 @@ export default function DesktopNavbar() {
   return (
     <div className={classes.navbarContainer}>
       {/* Logo Section */}
-      <img src="/better-logo.svg" alt="Logo" className={classes.logo} onClick={navigateToHome}/>
+      <img src="/logo-cad.svg" alt="Logo" className={classes.logo} onClick={navigateToHome}/>
 
       {/* Main Navigation Links */}
       <div className={classes.navLinks}>
-        <Link href="/" className={classes.link} onClick={resetDropdown}>Home</Link>
+        <Link href="/" className={`${classes.link} ${isActive("/") ? classes.active : ""}`} onClick={resetDropdown}>Home</Link>
 
         {/* Dropdown Menu for Projects */}
         <div className={classes.dropdownLinks} onClick={manageDropdown}>
-          <p className={classes.link}>Progetti</p>
+          <p className={`${classes.link} ${isActive("/progetti") ? classes.active : ""}`}>Progetti</p>
           <motion.div className={classes.dropdownIconContainer}
             animate={{ rotate: isDroppedDown ? 180 : 0 }}
             transition={{ duration: 0.2 }}
@@ -69,18 +82,17 @@ export default function DesktopNavbar() {
                   transition={{ duration: 0.2 }}
                 >
                   <Link href="/progetti" className={classes.link} onClick={resetDropdown}>Tutti</Link>
-                  <Link href={`/progetti?type=${ProjectTypes.RISTRUTTURAZIONE}`} className={classes.link} onClick={resetDropdown}>Ristrutturazione</Link>
-                  <Link href={`/progetti?type=${ProjectTypes.NUOVA_COSTRUZIONE}`} className={classes.link} onClick={resetDropdown}>Nuova costruzione</Link>
-                  <Link href={`/progetti?type=${ProjectTypes.RESTAURO}`} className={classes.link} onClick={resetDropdown}>Restauro</Link>
-                  <Link href={`/progetti?type=${ProjectTypes.INTERIOR_DESIGN}`} className={classes.link} onClick={resetDropdown}>Interior design</Link>
+                  {availableProjectTypes.map((type) => (
+                    <Link key={type} href={`/progetti?type=${type}`} className={classes.link} onClick={resetDropdown}>{PROJECT_TYPE_LABELS[type]}</Link>
+                  ))}
                 </motion.div>
               )
             }
           </AnimatePresence>
         </div>
 
-        <Link href="/profilo" className={classes.link} onClick={resetDropdown}>Profilo</Link>
-        <Link href="/contatti" className={classes.link} onClick={resetDropdown}>Contatti</Link>
+        <Link href="/profilo" className={`${classes.link} ${isActive("/profilo") ? classes.active : ""}`} onClick={resetDropdown}>Profilo</Link>
+        <Link href="/contatti" className={`${classes.link} ${isActive("/contatti") ? classes.active : ""}`} onClick={resetDropdown}>Contatti</Link>
       </div>
     </div>
   )

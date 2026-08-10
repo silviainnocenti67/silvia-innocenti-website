@@ -2,7 +2,7 @@
   width: 100%;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
+  padding: 6px 20px;
   background-color: #ffffff;
   flex-direction: column;
   position: absolute;
@@ -110,8 +110,10 @@
 }
 
 .logo {
-  width: 150px;
-  height: auto;
+  /* Il logo è quasi quadrato: fissiamo l'altezza (la stessa che aveva il logo
+     precedente da 115px di larghezza) così la navbar non cambia dimensioni. */
+  height: 51.5px;
+  width: auto;
 }
 
 .link {
@@ -124,6 +126,13 @@
 
 .link:hover {
   color: var(--si-black);
+}
+
+.active {
+  color: var(--si-black);
+  text-decoration: underline;
+  text-underline-offset: 6px;
+  text-decoration-thickness: 1px;
 }
 
 .dropdownIconContainer {

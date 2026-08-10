@@ -74,7 +74,7 @@ export default function HomePage() {
           transition={{ duration: 0.6, delay: 0.3 }}
           viewport={{ once: true }}
         >
-          <img src="/profile-photo.png" alt="Profile Image" className={classes.profileImage} />
+          <img src="/profile.jpg" alt="Silvia Innocenti" className={classes.profileImage} />
         </motion.div>
       </div>
 

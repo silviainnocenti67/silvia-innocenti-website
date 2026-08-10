@@ -1,168 +1,43 @@
 import { Project } from '../interfaces/Project.interface';
-import { ProjectTypes } from '@/enums/projectTypes.enum';
+import { ProjectTypes, PROJECT_TYPE_ORDER } from '@/enums/projectTypes.enum';
 
-export const PROJECTS_COVERS_PATH = '/projects/covers';
-export const PROJECTS_COLLECTIONS_PATH = '/projects/collections';
+const AS = '/projects/villa-as';
+const MS = '/projects/villa-ms';
+
+const seq = <T>(n: number, fn: (i: number) => T): T[] =>
+  Array.from({ length: n }, (_, i) => fn(i + 1));
+const pad = (i: number) => String(i).padStart(2, '0');
 
 export const projects: Project[] = [
-    {
-        id: 1,
-        type: ProjectTypes.RISTRUTTURAZIONE,
-        title: 'Ristrutturazione Villa',
-        description: 'Ristrutturazione di una villa storica',
-        date: '2022-01-01',
-        location: 'Roma',
-        cover: `${PROJECTS_COVERS_PATH}/1.png`,
-        collection: [
-            `${PROJECTS_COLLECTIONS_PATH}/1/1.png`,
-            `${PROJECTS_COLLECTIONS_PATH}/1/2.png`,
-            `${PROJECTS_COLLECTIONS_PATH}/1/3.png`,
-            `${PROJECTS_COLLECTIONS_PATH}/1/4.png`,
-            `${PROJECTS_COLLECTIONS_PATH}/1/5.png`,
-        ],
-    },
-    {
-        id: 2,
-        type: ProjectTypes.NUOVA_COSTRUZIONE,
-        title: 'Nuova Costruzione Residenziale',
-        description: 'Progetto di una nuova costruzione residenziale',
-        date: '2023-03-15',
-        location: 'Milano',
-        cover: `${PROJECTS_COVERS_PATH}/2.png`,
-        collection: [
-            `${PROJECTS_COLLECTIONS_PATH}/2/1.png`,
-            `${PROJECTS_COLLECTIONS_PATH}/2/2.png`,
-            `${PROJECTS_COLLECTIONS_PATH}/2/3.png`,
-            `${PROJECTS_COLLECTIONS_PATH}/2/4.png`,
-            `${PROJECTS_COLLECTIONS_PATH}/2/5.png`,
-        ],
-    },
-    {
-        id: 3,
-        type: ProjectTypes.RESTAURO,
-        title: 'Restauro Palazzo Antico',
-        description: 'Restauro di un palazzo antico nel centro storico',
-        date: '2021-11-20',
-        location: 'Firenze',
-        cover: `${PROJECTS_COVERS_PATH}/3.png`,
-        collection: [
-            `${PROJECTS_COLLECTIONS_PATH}/3/1.png`,
-            `${PROJECTS_COLLECTIONS_PATH}/3/2.png`,
-            `${PROJECTS_COLLECTIONS_PATH}/3/3.png`,
-            `${PROJECTS_COLLECTIONS_PATH}/3/4.png`,
-            `${PROJECTS_COLLECTIONS_PATH}/3/5.png`,
-        ],
-    },
-    {
-        id: 4,
-        type: ProjectTypes.INTERIOR_DESIGN,
-        title: 'Design Interni Appartamento Moderno',
-        description: 'Progetto di interior design per un appartamento moderno',
-        date: '2022-05-10',
-        location: 'Torino',
-        cover: `${PROJECTS_COVERS_PATH}/4.png`,
-        collection: [
-            `${PROJECTS_COLLECTIONS_PATH}/4/1.png`,
-            `${PROJECTS_COLLECTIONS_PATH}/4/2.png`,
-            `${PROJECTS_COLLECTIONS_PATH}/4/3.png`,
-            `${PROJECTS_COLLECTIONS_PATH}/4/4.png`,
-            `${PROJECTS_COLLECTIONS_PATH}/4/5.png`,
-        ],
-    },
-    {
-        id: 5,
-        type: ProjectTypes.RISTRUTTURAZIONE,
-        title: 'Ristrutturazione Casa di Campagna',
-        description: 'Ristrutturazione completa di una casa di campagna',
-        date: '2023-07-22',
-        location: 'Siena',
-        cover: `${PROJECTS_COVERS_PATH}/5.png`,
-        collection: [
-            `${PROJECTS_COLLECTIONS_PATH}/5/1.png`,
-            `${PROJECTS_COLLECTIONS_PATH}/5/2.png`,
-            `${PROJECTS_COLLECTIONS_PATH}/5/3.png`,
-            `${PROJECTS_COLLECTIONS_PATH}/5/4.png`,
-            `${PROJECTS_COLLECTIONS_PATH}/5/5.png`,
-        ],
-    },
-    {
-        id: 6,
-        type: ProjectTypes.INTERIOR_DESIGN,
-        title: 'Interior Design Uffici Aziendali',
-        description: 'Progetto di interior design per uffici aziendali',
-        date: '2022-09-30',
-        location: 'Bologna',
-        cover: `${PROJECTS_COVERS_PATH}/6.png`,
-        collection: [
-            `${PROJECTS_COLLECTIONS_PATH}/6/1.png`,
-            `${PROJECTS_COLLECTIONS_PATH}/6/2.png`,
-            `${PROJECTS_COLLECTIONS_PATH}/6/3.png`,
-            `${PROJECTS_COLLECTIONS_PATH}/6/4.png`,
-            `${PROJECTS_COLLECTIONS_PATH}/6/5.png`,
-        ],
-    },
-    {
-        id: 7,
-        type: ProjectTypes.NUOVA_COSTRUZIONE,
-        title: 'Nuova Costruzione Centro Commerciale',
-        description: 'Progetto di una nuova costruzione per un centro commerciale',
-        date: '2023-12-01',
-        location: 'Napoli',
-        cover: `${PROJECTS_COVERS_PATH}/7.png`,
-        collection: [
-            `${PROJECTS_COLLECTIONS_PATH}/7/1.png`,
-            `${PROJECTS_COLLECTIONS_PATH}/7/2.png`,
-            `${PROJECTS_COLLECTIONS_PATH}/7/3.png`,
-            `${PROJECTS_COLLECTIONS_PATH}/7/4.png`,
-            `${PROJECTS_COLLECTIONS_PATH}/7/5.png`,
-        ],
-    },
-    {
-        id: 8,
-        type: ProjectTypes.RESTAURO,
-        title: 'Restauro Villa Storica',
-        description: 'Restauro di una villa storica con giardino',
-        date: '2024-01-15',
-        location: 'Venezia',
-        cover: `${PROJECTS_COVERS_PATH}/8.png`,
-        collection: [
-            `${PROJECTS_COLLECTIONS_PATH}/8/1.png`,
-            `${PROJECTS_COLLECTIONS_PATH}/8/2.png`,
-            `${PROJECTS_COLLECTIONS_PATH}/8/3.png`,
-            `${PROJECTS_COLLECTIONS_PATH}/8/4.png`,
-            `${PROJECTS_COLLECTIONS_PATH}/8/5.png`,
-        ],
-    },
-    {
-        id: 9,
-        type: ProjectTypes.NUOVA_COSTRUZIONE,
-        title: 'Nuova Costruzione Edificio Commerciale',
-        description: 'Progetto di una nuova costruzione per un edificio commerciale',
-        date: '2024-02-20',
-        location: 'Torino',
-        cover: `${PROJECTS_COVERS_PATH}/9.png`,
-        collection: [
-            `${PROJECTS_COLLECTIONS_PATH}/9/1.png`,
-            `${PROJECTS_COLLECTIONS_PATH}/9/2.png`,
-            `${PROJECTS_COLLECTIONS_PATH}/9/3.png`,
-            `${PROJECTS_COLLECTIONS_PATH}/9/4.png`,
-            `${PROJECTS_COLLECTIONS_PATH}/9/5.png`,
-        ],
-    },
-    {
-        id: 10,
-        type: ProjectTypes.INTERIOR_DESIGN,
-        title: 'Interior Design Negozio',
-        description: 'Progetto di interior design per un negozio',
-        date: '2024-03-10',
-        location: 'Milano',
-        cover: `${PROJECTS_COVERS_PATH}/10.png`,
-        collection: [
-            `${PROJECTS_COLLECTIONS_PATH}/10/1.png`,
-            `${PROJECTS_COLLECTIONS_PATH}/10/2.png`,
-            `${PROJECTS_COLLECTIONS_PATH}/10/3.png`,
-            `${PROJECTS_COLLECTIONS_PATH}/10/4.png`,
-            `${PROJECTS_COLLECTIONS_PATH}/10/5.png`,
-        ],
-    }
+  {
+    id: 1,
+    type: ProjectTypes.RISTRUTTURAZIONE_RESTAURO,
+    title: 'Villa AS',
+    location: 'Piove di Sacco (PD)',
+    cover: `${AS}/cover.jpg`,
+    beforeAfter: seq(5, (i) => ({
+      before: `${AS}/before-after/${i}-prima.jpg`,
+      after: `${AS}/before-after/${i}-dopo.jpg`,
+    })),
+    galleries: [
+      { title: 'Esterni', images: seq(9, (i) => `${AS}/esterni/${i}.jpg`) },
+      { title: 'Interni', images: seq(30, (i) => `${AS}/interni/${pad(i)}.jpg`) },
+    ],
+  },
+  {
+    id: 2,
+    type: ProjectTypes.ARCHITETTURA_INTERNI_ARREDO,
+    title: 'Villa MS',
+    location: 'Provincia di Padova',
+    cover: `${MS}/cover.jpg`,
+    collection: seq(7, (i) => `${MS}/${i}.jpg`),
+  },
 ];
+
+/**
+ * Categorie effettivamente presenti tra i progetti, in ordine di visualizzazione.
+ * Usato per mostrare solo le categorie non vuote nei menu/filtri.
+ */
+export const availableProjectTypes = PROJECT_TYPE_ORDER.filter((t) =>
+  projects.some((p) => p.type === t)
+);

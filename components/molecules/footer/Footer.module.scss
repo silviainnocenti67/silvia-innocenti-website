@@ -1,5 +1,5 @@
 .footer {
-    margin-top: 100px;
+    margin-top: var(--page-gap);
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -56,7 +56,13 @@
 }
 
 .footerLogo {
-    height: 80px;
+    /* 150px è il massimo che entra nei 160px di area utile del footer
+       (200px di altezza meno i 40px di padding inferiore). */
+    height: 150px;
+
+    @media (max-width: 1450px) {
+        height: 130px;
+    }
 }
 
 .footerSectionTitle {
@@ -89,8 +95,34 @@
     align-items: center;
 }
 
+.contactsCenter {
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+}
+
+.sitemap {
+    align-items: center;
+    gap: 10px;
+
+    @media (max-width: 1450px) {
+        align-items: center;
+    }
+}
+
+.sitemapLink {
+    color: var(--si-grey);
+    text-decoration: none;
+    width: fit-content;
+
+    &:hover {
+        text-decoration: underline;
+        cursor: pointer;
+    }
+}
+
 @media screen and (max-width: 600px) {
     .footerLogo{
-        height: 60px;
+        height: 110px;
     }
 }
